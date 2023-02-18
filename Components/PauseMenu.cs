@@ -1,15 +1,19 @@
-public partial class PauseMenu : Control
+namespace CMSGame
 {
-    private GameSettings _settings;
-
-    public override void _Ready()
+    public partial class PauseMenu : Control
     {
-        _settings = GetNode<GameSettings>("/root/GameSettings");
-        GetNode<CheckBox>("%CheckBoxPauseBattleWhenCharacterIsSelected").ToggleMode = _settings.PauseBattleWhenCharacterIsSelected;
+        private GameSettings _settings;
+
+        public override void _Ready()
+        {
+            _settings = GetNode<GameSettings>("/root/GameSettings");
+            GetNode<CheckBox>("%CheckBoxPauseBattleWhenCharacterIsSelected").ToggleMode = _settings.PauseBattleWhenCharacterIsSelected;
+        }
+
+        public void On_CheckBoxPauseBattleWhenCharacterIsSelected_Toggled()
+        {
+            _settings.PauseBattleWhenCharacterIsSelected = false;
+        }
     }
 
-    public void On_CheckBoxPauseBattleWhenCharacterIsSelected_Toggled()
-    {
-        _settings.PauseBattleWhenCharacterIsSelected = false;
-    }
 }

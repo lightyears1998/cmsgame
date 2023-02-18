@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://cx6yq8awwkqv3"]
 
-[ext_resource type="Script" path="res://Scenes/Battle.cs" id="1_n6bn7"]
+[ext_resource type="Script" path="res://Scenes/BattleScene.cs" id="1_n6bn7"]
 
-[node name="Battle" type="Control"]
+[node name="BattleScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

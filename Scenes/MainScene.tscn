@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxnmltew81ny0"]
 
-[ext_resource type="Script" path="res://Scenes/Main.cs" id="1_kso8c"]
+[ext_resource type="Script" path="res://Scenes/MainScene.cs" id="1_kso8c"]
 
-[node name="Main" type="Control"]
+[node name="MainScene" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,9 +35,12 @@ grow_vertical = 2
 layout_mode = 2
 text = "战斗场景 Demo"
 
+[node name="ButtonSettings" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "游戏设置"
+
 [node name="ButtonExit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "退出"
 
-[connection signal="pressed" from="VBoxContainer/ButtonBattleDemo" to="." method="_On_button_battle_demo_pressed"]
-[connection signal="button_up" from="VBoxContainer/ButtonExit" to="." method="_on_button_exit_button_up"]
+[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="On_ButtonSettings_Pressed"]

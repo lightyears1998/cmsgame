@@ -1,3 +1,6 @@
-public partial class BattleCharacter : Sprite2D
+namespace CMSGame
 {
+    public partial class BattleCharacter : Sprite2D
+    {
+    }
 }
