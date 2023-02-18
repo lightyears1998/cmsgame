@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://be4dnt701hcsv"]
+
+[ext_resource type="Texture2D" uid="uid://dgl6fv3okxuoc" path="res://Assets/Characters/1.png" id="1_wpp45"]
+[ext_resource type="Script" path="res://Components/BattleCharacter.cs" id="2_upe33"]
+
+[node name="BattleCharacter" type="Sprite2D"]
+texture = ExtResource("1_wpp45")
+script = ExtResource("2_upe33")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="LabelName" type="Label" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -165.5
+offset_right = -81.0
+offset_bottom = -139.5
+grow_vertical = 2
+text = "Name"
