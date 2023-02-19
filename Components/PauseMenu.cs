@@ -2,7 +2,7 @@ namespace CMSGame
 {
     public partial class PauseMenu : Popup
     {
-        public void On_ButtonExit_Pressed()
+        public void On_ExitButton_Pressed()
         {
             Hide();
         }

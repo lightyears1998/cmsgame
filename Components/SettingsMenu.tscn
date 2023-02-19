@@ -5,9 +5,9 @@
 [node name="VBoxContainer" type="VBoxContainer"]
 script = ExtResource("1_b12ly")
 
-[node name="CheckBoxPauseBattleWhenCharacterIsSelected" type="CheckBox" parent="."]
+[node name="PauseBattleWhenCharacterIsSelectedCheckBox" type="CheckBox" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 text = "选中角色时暂停战斗"
 
-[connection signal="toggled" from="CheckBoxPauseBattleWhenCharacterIsSelected" to="." method="On_CheckBoxPauseBattleWhenCharacterIsSelected_Toggled"]
+[connection signal="toggled" from="PauseBattleWhenCharacterIsSelectedCheckBox" to="." method="On_PauseBattleWhenCharacterIsSelectedCheckBox_Toggled"]

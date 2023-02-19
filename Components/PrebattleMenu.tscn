@@ -22,14 +22,14 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonPrepare" type="Button" parent="VBoxContainer"]
+[node name="PrepareForBattleButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "战前准备"
 
-[node name="ButtonStart" type="Button" parent="VBoxContainer"]
+[node name="BeginBattleButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "开始战斗"
 
-[node name="ButtonEscape" type="Button" parent="VBoxContainer"]
+[node name="EscapeFromBattleButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "逃跑"

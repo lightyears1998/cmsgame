@@ -26,8 +26,8 @@ size_flags_vertical = 4
 [node name="SettingsMenu" parent="VBoxContainer" instance=ExtResource("2_smral")]
 layout_mode = 2
 
-[node name="ButtonExit" type="Button" parent="VBoxContainer"]
+[node name="ExitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "确认"
 
-[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="On_ButtonExit_Pressed"]
+[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="On_ExitButton_Pressed"]

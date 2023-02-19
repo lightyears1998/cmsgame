@@ -2,26 +2,26 @@ namespace CMSGame
 {
     public partial class SettingsMenu : VBoxContainer
     {
-        private GameSettings _settings;
+        public GameSettings Settings;
 
-        private CheckBox _checkBoxPauseBattleWhenCharacterIsSelected;
+        public CheckBox PauseBattleWhenCharacterIsSelectedCheckBox;
 
         public override void _Ready()
         {
             InitializeComponents();
 
-            _checkBoxPauseBattleWhenCharacterIsSelected.ButtonPressed = _settings.BattleSettings.PauseBattleWhenCharacterIsSelected;
+            PauseBattleWhenCharacterIsSelectedCheckBox.ButtonPressed = Settings.BattleSettings.PauseBattleWhenCharacterIsSelected;
         }
 
         private void InitializeComponents()
         {
-            _settings = GetNode<GameSettings>("/root/GameSettings");
-            _checkBoxPauseBattleWhenCharacterIsSelected = GetNode<CheckBox>("%CheckBoxPauseBattleWhenCharacterIsSelected");
+            Settings = GetNode<GameSettings>("/root/GameSettings");
+            PauseBattleWhenCharacterIsSelectedCheckBox = GetNode<CheckBox>($"%{nameof(PauseBattleWhenCharacterIsSelectedCheckBox)}");
         }
 
-        public void On_CheckBoxPauseBattleWhenCharacterIsSelected_Toggled(bool pressed)
+        public void On_PauseBattleWhenCharacterIsSelectedCheckBox_Toggled(bool pressed)
         {
-            _settings.BattleSettings.PauseBattleWhenCharacterIsSelected = pressed;
+            Settings.BattleSettings.PauseBattleWhenCharacterIsSelected = pressed;
         }
     }
 }

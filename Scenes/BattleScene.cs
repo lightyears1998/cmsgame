@@ -2,7 +2,7 @@ namespace CMSGame
 {
     public partial class BattleScene : Node2D
     {
-        private Label _labelBattleTime;
+        public Label BattleTimeLabel;
 
         public double Time;
 
@@ -10,7 +10,7 @@ namespace CMSGame
 
         public override void _Ready()
         {
-            _labelBattleTime = GetNode<Label>("%LabelBattleTime");
+            BattleTimeLabel = GetNode<Label>($"%{nameof(BattleTimeLabel)}");
         }
 
         public override void _Process(double delta)
@@ -26,23 +26,23 @@ namespace CMSGame
         {
             if (Input.IsActionPressed("battle_pause_toggle"))
             {
-                ToggleBattlePause();
+                TogglePauseBattle();
             }
         }
 
         public void UpdateUI()
         {
-            _labelBattleTime.Text = TimeHelper.FormatTime(Time);
+            BattleTimeLabel.Text = TimeHelper.FormatTime(Time);
         }
 
-        private void ToggleBattlePause()
+        private void TogglePauseBattle()
         {
             IsPause = !IsPause;
         }
 
-        public void On_ButtonPauseBattle_Pressed()
+        public void On_PauseBattleButton_Pressed()
         {
-            ToggleBattlePause();
+            TogglePauseBattle();
         }
     }
 }
