@@ -35,7 +35,8 @@ namespace CMSGame
         {
             if (FileAccess.FileExists(path))
             {
-                return FileAccess.Open(path, FileAccess.ModeFlags.Read).GetAsText();
+                using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+                return file.GetAsText();
             }
             return "null";
         }
@@ -43,9 +44,8 @@ namespace CMSGame
         private void SaveSettings(string path)
         {
             string settings_text = JsonConvert.SerializeObject(BattleSettings);
-            var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
+            using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
             file.StoreString(settings_text);
-            file.Dispose();
         }
     }
 
