@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://be4dnt701hcsv"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="Texture2D" uid="uid://dgl6fv3okxuoc" path="res://Assets/Characters/1.png" id="1_wpp45"]
+[ext_resource type="Texture2D" uid="uid://dgl6fv3okxuoc" path="res://Temp/Characters/1.png" id="1_wpp45"]
 [ext_resource type="Script" path="res://Components/BattleCharacter.cs" id="2_upe33"]
 
 [node name="BattleCharacter" type="Sprite2D"]

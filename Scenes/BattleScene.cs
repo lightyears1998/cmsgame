@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class BattleScene : Control
+    public partial class BattleScene : Node2D
     {
         private Label _labelBattleTime;
 
@@ -22,11 +22,11 @@ namespace CMSGame
             UpdateUI();
         }
 
-        public override void _Input(InputEvent input)
+        public override void _UnhandledInput(InputEvent input)
         {
-            if (Input.IsActionPressed("battle_pause"))
+            if (Input.IsActionPressed("battle_pause_toggle"))
             {
-                IsPause = !IsPause;
+                ToggleBattlePause();
             }
         }
 
@@ -35,9 +35,14 @@ namespace CMSGame
             _labelBattleTime.Text = TimeHelper.FormatTime(Time);
         }
 
-        public static void On_ButtonBattlePause_Pressed()
+        private void ToggleBattlePause()
         {
-            Input.ParseInputEvent(new InputEventAction { Action = "battle_pause" });
+            IsPause = !IsPause;
+        }
+
+        public void On_ButtonPauseBattle_Pressed()
+        {
+            ToggleBattlePause();
         }
     }
 }
