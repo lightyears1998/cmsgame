@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cslqihnfw0me2"]
+
+[ext_resource type="Script" path="res://Components/SettingsMenuPopup.cs" id="1_it4yp"]
+[ext_resource type="PackedScene" uid="uid://blk2uswpo2a7k" path="res://Components/SettingsMenu.tscn" id="2_qc1kk"]
+
+[node name="SettingsMenuPopup" type="Popup"]
+size = Vector2i(172, 101)
+visible = true
+script = ExtResource("1_it4yp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SettingsMenu" parent="VBoxContainer" instance=ExtResource("2_qc1kk")]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "保存并退出"
+
+[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="On_ConfirmButton_Pressed"]

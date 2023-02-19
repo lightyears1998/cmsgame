@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx6yq8awwkqv3"]
+[gd_scene load_steps=7 format=3 uid="uid://cx6yq8awwkqv3"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene.cs" id="1_n6bn7"]
+[ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/SettingsMenuPopup.tscn" id="2_aucd7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vrgig"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -27,7 +28,6 @@ environment = SubResource("Environment_hv4sx")
 transform = Transform3D(1, 0, 0, 0, 0.93328, 0.35915, 0, -0.35915, 0.93328, 0, 1.08667, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.944216, -0.122152, 0.305836, 0, 0.928667, 0.370914, -0.329328, -0.350223, 0.876862, 1.24593, 0.913904, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
@@ -62,10 +62,51 @@ grow_vertical = 0
 focus_mode = 0
 text = "按下 Space 暂停时间"
 
+[node name="PauseMenuPopup" type="Popup" parent="Camera3D/CanvasLayer/HUD"]
+unique_name_in_owner = true
+size = Vector2i(242, 306)
+
+[node name="PauseMenu" type="VBoxContainer" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -50.5
+offset_right = 86.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ResumeBattleButton" type="Button" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "继续战斗"
+
+[node name="SettingsMenuButton" type="Button" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "游戏设置"
+
+[node name="EscapeFromBattleButton" type="Button" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup/PauseMenu"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "退出战斗"
+
+[node name="SettingsMenuPopup" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup" instance=ExtResource("2_aucd7")]
+unique_name_in_owner = true
+visible = false
+
 [node name="Characters" type="Node3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Characters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.36628)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30333, 0, -2.36628)
 mesh = SubResource("BoxMesh_7g2up")
 
 [connection signal="pressed" from="Camera3D/CanvasLayer/HUD/PauseBattleButton" to="." method="On_PauseBattleButton_Pressed"]
+[connection signal="popup_hide" from="Camera3D/CanvasLayer/HUD/PauseMenuPopup" to="." method="On_PauseMenuPopup_PopupHide"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/HUD/PauseMenuPopup/PauseMenu/ResumeBattleButton" to="." method="On_ResumeBattleButton_Pressed"]
+[connection signal="pressed" from="Camera3D/CanvasLayer/HUD/PauseMenuPopup/PauseMenu/SettingsMenuButton" to="." method="On_SettingsMenuButton_Pressed"]
