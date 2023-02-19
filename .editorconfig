@@ -4,4 +4,4 @@
 root = true
 
 [*.{cs,vb}]
-dotnet_diagnostic.CA1050.severity = none
+dotnet_diagnostic.CA1822.severity = none ; Mark members as static

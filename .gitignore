@@ -4,5 +4,6 @@
 # IDE
 .vscode
 
-# Temporary assets
-Assets
+# Temporary files
+.mono
+Temp
