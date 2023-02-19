@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxnmltew81ny0"]
 
 [ext_resource type="Script" path="res://Scenes/MainScene.cs" id="1_kso8c"]
-[ext_resource type="PackedScene" uid="uid://c1c87rr8eubhg" path="res://Components/PauseMenu.tscn" id="2_txg46"]
+[ext_resource type="PackedScene" uid="uid://dpd2tih2iudvb" path="res://Components/SettingsPopup.tscn" id="2_d0nn6"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kso8c")
 
-[node name="LabelGameTitle" type="Label" parent="."]
+[node name="GameTitleLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -37,22 +37,22 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonBattleDemo" type="Button" parent="VBoxContainer"]
+[node name="BattleDemo1Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "战斗场景 Demo"
+text = "战斗场景 Demo 1"
 
-[node name="ButtonSettings" type="Button" parent="VBoxContainer"]
+[node name="SettingsPopupButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "游戏设置"
 
-[node name="ButtonExit" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "退出"
 
-[node name="PauseMenu" parent="." instance=ExtResource("2_txg46")]
+[node name="SettingsPopup" parent="." instance=ExtResource("2_d0nn6")]
 unique_name_in_owner = true
 visible = false
 
-[connection signal="pressed" from="VBoxContainer/ButtonBattleDemo" to="." method="On_ButtonBattleDemo_Pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="On_ButtonSettings_Pressed"]
-[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="On_ButtonExit_Pressed"]
+[connection signal="pressed" from="VBoxContainer/BattleDemo1Button" to="." method="On_BattleDemo1Button_Pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsPopupButton" to="." method="On_SettingsPopupButton_Pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="On_QuitButton_Pressed"]

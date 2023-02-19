@@ -1,14 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://c1c87rr8eubhg"]
 
 [ext_resource type="Script" path="res://Components/PauseMenu.cs" id="1_p1e8d"]
-[ext_resource type="PackedScene" uid="uid://blk2uswpo2a7k" path="res://Components/SettingsMenu.tscn" id="2_smral"]
+[ext_resource type="PackedScene" uid="uid://dpd2tih2iudvb" path="res://Components/SettingsPopup.tscn" id="2_bymub"]
 
-[node name="PauseMenu" type="Popup"]
-size = Vector2i(342, 289)
-visible = true
-script = ExtResource("1_p1e8d")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PauseMenu" type="VBoxContainer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -22,12 +17,27 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+script = ExtResource("1_p1e8d")
 
-[node name="SettingsMenu" parent="VBoxContainer" instance=ExtResource("2_smral")]
+[node name="ResumeBattleButton" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
+text = "继续战斗"
 
-[node name="ExitButton" type="Button" parent="VBoxContainer"]
+[node name="SettingsMenuButton" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 2
-text = "确认"
+text = "游戏设置"
 
-[connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="On_ExitButton_Pressed"]
+[node name="EscapeFromBattleButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "退出战斗"
+
+[node name="SettingsPopup" parent="." instance=ExtResource("2_bymub")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="ResumeBattleButton" to="." method="On_ResumeBattleButton_Pressed"]
+[connection signal="pressed" from="SettingsMenuButton" to="." method="On_SettingsMenuButton_Pressed"]
+[connection signal="pressed" from="EscapeFromBattleButton" to="." method="On_EscapeFromBattleButton_Pressed"]

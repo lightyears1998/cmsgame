@@ -5,6 +5,7 @@
     <DefaultItemExcludes>$(DefaultItemExcludes);ScriptTemplates\**\*.cs</DefaultItemExcludes>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Diagnostics" Version="8.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 </Project>

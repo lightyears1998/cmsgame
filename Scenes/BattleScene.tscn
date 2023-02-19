@@ -21,14 +21,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelBattleTime" type="Label" parent="CanvasLayer/HUD"]
+[node name="BattleTimeLabel" type="Label" parent="CanvasLayer/HUD"]
 unique_name_in_owner = true
 layout_mode = 1
 offset_right = 41.0
 offset_bottom = 26.0
 text = "00:00"
 
-[node name="ButtonPauseBattle" type="Button" parent="CanvasLayer/HUD"]
+[node name="PauseBattleButton" type="Button" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -43,4 +43,4 @@ grow_vertical = 0
 focus_mode = 0
 text = "按下 Space 暂停时间"
 
-[connection signal="pressed" from="CanvasLayer/HUD/ButtonPauseBattle" to="." method="On_ButtonPauseBattle_Pressed"]
+[connection signal="pressed" from="CanvasLayer/HUD/PauseBattleButton" to="." method="On_PauseBattleButton_Pressed"]
