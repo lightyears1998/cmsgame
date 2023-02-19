@@ -2,19 +2,19 @@ namespace CMSGame
 {
     public partial class MainScene : Control
     {
-        public static void On_ButtonBattleDemo_Pressed()
+        public void On_ButtonBattleDemo_Pressed()
         {
-
+            GetTree().ChangeSceneToFile("res://Scenes/BattleScene.tscn");
         }
 
-        public static void On_ButtonSettings_Pressed()
+        public void On_ButtonSettings_Pressed()
         {
-
+            GetNode<Popup>("%PauseMenu").PopupCentered();
         }
 
-        public static void On_ButtonExit_Pressed()
+        public void On_ButtonExit_Pressed()
         {
-
+            GetTree().Quit();
         }
     }
 }

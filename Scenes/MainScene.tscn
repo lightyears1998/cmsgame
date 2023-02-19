@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxnmltew81ny0"]
+[gd_scene load_steps=3 format=3 uid="uid://dxnmltew81ny0"]
 
 [ext_resource type="Script" path="res://Scenes/MainScene.cs" id="1_kso8c"]
+[ext_resource type="PackedScene" uid="uid://c1c87rr8eubhg" path="res://Components/PauseMenu.tscn" id="2_txg46"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -11,10 +12,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kso8c")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="LabelGameTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -137.5
+offset_right = 137.5
+offset_bottom = 26.0
+grow_horizontal = 2
 text = "The Country of Mountains and Seas"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -43,4 +49,10 @@ text = "游戏设置"
 layout_mode = 2
 text = "退出"
 
+[node name="PauseMenu" parent="." instance=ExtResource("2_txg46")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="VBoxContainer/ButtonBattleDemo" to="." method="On_ButtonBattleDemo_Pressed"]
 [connection signal="pressed" from="VBoxContainer/ButtonSettings" to="." method="On_ButtonSettings_Pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="On_ButtonExit_Pressed"]

@@ -1,37 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1c87rr8eubhg"]
+[gd_scene load_steps=3 format=3 uid="uid://c1c87rr8eubhg"]
 
 [ext_resource type="Script" path="res://Components/PauseMenu.cs" id="1_p1e8d"]
+[ext_resource type="PackedScene" uid="uid://blk2uswpo2a7k" path="res://Components/SettingsMenu.tscn" id="2_smral"]
 
-[node name="PauseMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PauseMenu" type="Popup"]
+size = Vector2i(342, 289)
+visible = true
 script = ExtResource("1_p1e8d")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -86.0
+offset_top = -33.0
+offset_right = 86.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="CheckBoxPauseBattleWhenCharacterIsSelected" type="CheckBox" parent="VBoxContainer"]
-unique_name_in_owner = true
+[node name="VBoxContainer" parent="VBoxContainer" instance=ExtResource("2_smral")]
 layout_mode = 2
-text = "选中角色时暂停战斗"
 
 [node name="ButtonExit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "退出"
+text = "确认"
 
-[connection signal="toggled" from="VBoxContainer/CheckBoxPauseBattleWhenCharacterIsSelected" to="." method="_On_CheckBoxPauseBattleWhenCharacterIsSelected_Toggled"]
+[connection signal="pressed" from="VBoxContainer/ButtonExit" to="." method="On_ButtonExit_Pressed"]
