@@ -27,6 +27,7 @@ layout_mode = 1
 offset_right = 41.0
 offset_bottom = 26.0
 text = "00:00"
+metadata/_edit_use_anchors_ = true
 
 [node name="PauseBattleButton" type="Button" parent="CanvasLayer/HUD"]
 layout_mode = 1

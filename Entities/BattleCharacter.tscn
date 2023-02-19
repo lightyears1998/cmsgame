@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://d08cohfp183wp"]
+
+[ext_resource type="Texture2D" uid="uid://cnilysgmgw8n4" path="res://Temp/Characters/1_19.png" id="1_o3tjt"]
+[ext_resource type="Script" path="res://Entities/BattleCharacter.cs" id="2_vbdi8"]
+
+[node name="BattleCharacter" type="Node2D"]
+script = ExtResource("2_vbdi8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_o3tjt")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Sprite2D"]
+unique_name_in_owner = true
+
+[node name="TopStatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -64.0
+offset_top = -144.0
+offset_right = 64.0
+offset_bottom = -80.0
+text = "状态指示器（上）"
+vertical_alignment = 2
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 4
+
+[node name="ButtomStatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -64.0
+offset_top = 64.0
+offset_right = 64.0
+offset_bottom = 128.0
+text = "状态指示器（下）"
+autowrap_mode = 3
+clip_text = true
+text_overrun_behavior = 4

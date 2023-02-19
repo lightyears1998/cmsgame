@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GameSettings="*res://Autoloads/GameSettings.cs"
 
+[display]
+
+window/size/viewport_width=1600
+window/size/viewport_height=960
+
 [dotnet]
 
 project/assembly_name="CMSGame"
