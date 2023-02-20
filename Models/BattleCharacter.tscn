@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://d08cohfp183wp"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Texture2D" uid="uid://cnilysgmgw8n4" path="res://Temp/Characters/1_19.png" id="1_o3tjt"]
-[ext_resource type="Script" path="res://Entities/BattleCharacter.cs" id="2_vbdi8"]
+[ext_resource type="Script" path="res://Models/BattleCharacter.cs" id="2_vbdi8"]
 
 [node name="BattleCharacter" type="Node2D"]
 script = ExtResource("2_vbdi8")

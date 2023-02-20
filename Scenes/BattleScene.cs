@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class BattleScene : Node2D
+    public partial class BattleScene : Node3D
     {
         public Label BattleTimeLabel;
 

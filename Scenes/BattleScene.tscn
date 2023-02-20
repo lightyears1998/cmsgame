@@ -1,19 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx6yq8awwkqv3"]
+[gd_scene load_steps=6 format=3 uid="uid://cx6yq8awwkqv3"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene.cs" id="1_n6bn7"]
 
-[node name="BattleScene" type="Node2D"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vrgig"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_26whx"]
+sky_material = SubResource("ProceduralSkyMaterial_vrgig")
+
+[sub_resource type="Environment" id="Environment_hv4sx"]
+background_mode = 2
+sky = SubResource("Sky_26whx")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_7g2up"]
+
+[node name="BattleScene" type="Node3D"]
 script = ExtResource("1_n6bn7")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hv4sx")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.93328, 0.35915, 0, -0.35915, 0.93328, 0, 1.08667, 0)
 
-[node name="Characters" type="Node2D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.944216, -0.122152, 0.305836, 0, 0.928667, 0.370914, -0.329328, -0.350223, 0.876862, 1.24593, 0.913904, 0)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="Camera3D/CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +39,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BattleTimeLabel" type="Label" parent="CanvasLayer/HUD"]
+[node name="BattleTimeLabel" type="Label" parent="Camera3D/CanvasLayer/HUD"]
 unique_name_in_owner = true
 layout_mode = 1
 offset_right = 41.0
@@ -29,7 +47,7 @@ offset_bottom = 26.0
 text = "00:00"
 metadata/_edit_use_anchors_ = true
 
-[node name="PauseBattleButton" type="Button" parent="CanvasLayer/HUD"]
+[node name="PauseBattleButton" type="Button" parent="Camera3D/CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -44,4 +62,10 @@ grow_vertical = 0
 focus_mode = 0
 text = "按下 Space 暂停时间"
 
-[connection signal="pressed" from="CanvasLayer/HUD/PauseBattleButton" to="." method="On_PauseBattleButton_Pressed"]
+[node name="Characters" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Characters"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.36628)
+mesh = SubResource("BoxMesh_7g2up")
+
+[connection signal="pressed" from="Camera3D/CanvasLayer/HUD/PauseBattleButton" to="." method="On_PauseBattleButton_Pressed"]
