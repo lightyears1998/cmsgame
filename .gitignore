@@ -3,6 +3,7 @@
 
 # IDE
 .vscode
+.vs
 
 # Temporary files
 .mono
