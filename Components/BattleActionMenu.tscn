@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://bktklsml5d0jg"]
+
+[ext_resource type="Script" path="res://Components/BattleActionMenu.cs" id="1_0bfmk"]
+
+[node name="BattleActionMenu" type="VBoxContainer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 40.0
+offset_bottom = 15.5
+grow_vertical = 2
+script = ExtResource("1_0bfmk")
+
+[node name="ItemActionButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "物品"
+
+[node name="DynamicActions" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SkillActionButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "技能"
+
+[node name="CommandActionButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "指挥"

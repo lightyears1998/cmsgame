@@ -13,6 +13,7 @@ script = ExtResource("2_vbdi8")
 unique_name_in_owner = true
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shaded = true
 alpha_cut = 2
