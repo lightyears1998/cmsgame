@@ -8,15 +8,10 @@ namespace CMSGame
 
         public override void _Ready()
         {
-            InitializeComponents();
+            this.GetAutoloadNode(ref Settings, nameof(GameSettings));
+            this.GetUniqueNode(ref PauseBattleWhenCharacterIsSelectedCheckBox, nameof(PauseBattleWhenCharacterIsSelectedCheckBox));
 
             PauseBattleWhenCharacterIsSelectedCheckBox.ButtonPressed = Settings.BattleSettings.PauseBattleWhenCharacterIsSelected;
-        }
-
-        private void InitializeComponents()
-        {
-            Settings = GetNode<GameSettings>("/root/GameSettings");
-            PauseBattleWhenCharacterIsSelectedCheckBox = GetNode<CheckBox>($"%{nameof(PauseBattleWhenCharacterIsSelectedCheckBox)}");
         }
 
         public void On_PauseBattleWhenCharacterIsSelectedCheckBox_Toggled(bool pressed)

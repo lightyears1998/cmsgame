@@ -2,7 +2,7 @@ namespace CMSGame
 {
     public partial class Character : Node
     {
-        public int HP;
+        public int HealthPoint;
 
         public override void _Ready()
         {

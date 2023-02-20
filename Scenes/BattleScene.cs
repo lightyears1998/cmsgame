@@ -16,9 +16,9 @@ namespace CMSGame
 
         public override void _Ready()
         {
-            PauseMenuPopup = this.GetUniqueNode<Popup>($"%{nameof(PauseMenuPopup)}");
-            SettingsMenuPopup = this.GetUniqueNode<Popup>($"%{nameof(SettingsMenuPopup)}");
-            BattleTimeLabel = this.GetUniqueNode<Label>($"%{nameof(BattleTimeLabel)}");
+            this.GetUniqueNode(ref PauseMenuPopup, nameof(PauseMenuPopup));
+            this.GetUniqueNode(ref SettingsMenuPopup, nameof(SettingsMenuPopup));
+            this.GetUniqueNode(ref BattleTimeLabel, nameof(BattleTimeLabel));
         }
 
         public override void _Process(double delta)
