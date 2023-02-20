@@ -21,37 +21,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1026, 0.524168, -2.96058)
 [node name="BattleCharacter2" parent="BattleScene/Characters" index="1" instance=ExtResource("3_nau0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25622, 0.524168, -2.87261)
 
-[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter2" index="1"]
+[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter2" index="2"]
 texture = ExtResource("4_jnah0")
 
 [node name="BattleCharacter3" parent="BattleScene/Characters" index="2" instance=ExtResource("3_nau0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.524168, -4.12488)
 
-[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter3" index="1"]
+[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter3" index="2"]
 texture = ExtResource("5_4vahd")
 
 [node name="BattleCharacter4" parent="BattleScene/Characters" index="3" instance=ExtResource("3_nau0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.737777, 0.524168, -3.35854)
 
-[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter4" index="1"]
+[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter4" index="2"]
 texture = ExtResource("6_6563q")
 
 [node name="BattleCharacter5" parent="BattleScene/Characters" index="4" instance=ExtResource("3_nau0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6372, 0.524168, -3.47228)
 
-[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter5" index="1"]
+[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter5" index="2"]
 texture = ExtResource("7_a35tl")
 
 [node name="BattleCharacter6" parent="BattleScene/Characters" index="5" instance=ExtResource("3_nau0d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.27585, 0.524168, -5.80874)
 
-[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter6" index="1"]
+[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter6" index="2"]
 texture = ExtResource("8_oklwm")
 
 [node name="BattleCharacter7" parent="BattleScene/Characters" index="6" instance=ExtResource("3_nau0d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44713, 0.524168, -6.18927)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44713, 0.524168, -12.3572)
 
-[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter7" index="1"]
+[node name="Sprite3D" parent="BattleScene/Characters/BattleCharacter7" index="2"]
 texture = ExtResource("9_wor4w")
 
 [connection signal="MousePressed" from="BattleScene/Characters/BattleCharacter" to="." method="On_BattleCharacter_MousePressed"]
