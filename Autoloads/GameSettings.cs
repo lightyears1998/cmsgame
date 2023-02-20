@@ -4,6 +4,8 @@ namespace CMSGame
 {
     public partial class GameSettings : Node
     {
+        public BattleSettings OriginalBattleSettings;
+
         public BattleSettings BattleSettings;
 
         protected string BattleSettingsSavePath = new GodotPath("user://Settings/BattleSettings.json");
@@ -11,12 +13,17 @@ namespace CMSGame
         public override void _Ready()
         {
             MakeDirectories();
-            BattleSettings = GetSettings<BattleSettings>(BattleSettingsSavePath);
+
+            OriginalBattleSettings = GetSettings<BattleSettings>(BattleSettingsSavePath);
+            BattleSettings = OriginalBattleSettings with { };
         }
 
         public override void _ExitTree()
         {
-            SaveSettings(BattleSettingsSavePath);
+            if (BattleSettings != OriginalBattleSettings)
+            {
+                SaveSettings(BattleSettingsSavePath);
+            }
         }
 
         private void MakeDirectories()
@@ -24,10 +31,11 @@ namespace CMSGame
             DirAccess.MakeDirRecursiveAbsolute("user://Settings/");
         }
 
-        private SettingsType GetSettings<SettingsType>(string path) where SettingsType : new()
+        private TSettings GetSettings<TSettings>(string path)
+            where TSettings : SettingsBase, new()
         {
             string settings_text = ReadFileAsString(path);
-            var settings = JsonConvert.DeserializeObject<SettingsType>(settings_text) ?? new SettingsType();
+            var settings = JsonConvert.DeserializeObject<TSettings>(settings_text) ?? new TSettings();
             return settings;
         }
 
@@ -49,15 +57,11 @@ namespace CMSGame
         }
     }
 
-    public class SettingsBase
+    public record class SettingsBase
     {
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
     }
 
-    public class BattleSettings : SettingsBase
+    public record class BattleSettings : SettingsBase
     {
         public bool PauseBattleWhenCharacterIsSelected = true;
     }
