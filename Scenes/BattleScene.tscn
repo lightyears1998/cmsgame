@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx6yq8awwkqv3"]
+[gd_scene load_steps=10 format=3 uid="uid://cx6yq8awwkqv3"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene.cs" id="1_n6bn7"]
-[ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/SettingsMenuPopup.tscn" id="2_aucd7"]
+[ext_resource type="PackedScene" path="res://Components/SettingsMenuPopup.tscn" id="2_aucd7"]
+[ext_resource type="Texture2D" uid="uid://dt1kwicn6i51e" path="res://Temp/Textures/SBS - Tiny Texture Pack - 256x256/256x256/Bricks/Bricks_05-256x256.png" id="3_swgxf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vrgig"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -16,7 +17,15 @@ sky = SubResource("Sky_26whx")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="BoxMesh" id="BoxMesh_7g2up"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udghy"]
+albedo_texture = ExtResource("3_swgxf")
+uv1_scale = Vector3(20, 20, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_30sfg"]
+material = SubResource("StandardMaterial3D_udghy")
+size = Vector2(40, 20)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_a4f8m"]
 
 [node name="BattleScene" type="Node3D"]
 script = ExtResource("1_n6bn7")
@@ -25,9 +34,11 @@ script = ExtResource("1_n6bn7")
 environment = SubResource("Environment_hv4sx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.93328, 0.35915, 0, -0.35915, 0.93328, 0, 1.08667, 0)
+transform = Transform3D(1, 0, 0, 0, 0.558497, 0.829506, 0, -0.829506, 0.558497, 0, 10.6856, 0)
+shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.35115, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
@@ -65,6 +76,7 @@ text = "按下 Space 暂停时间"
 [node name="PauseMenuPopup" type="Popup" parent="Camera3D/CanvasLayer/HUD"]
 unique_name_in_owner = true
 size = Vector2i(242, 306)
+borderless = false
 
 [node name="PauseMenu" type="VBoxContainer" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup"]
 anchors_preset = 8
@@ -96,15 +108,29 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "退出战斗"
 
-[node name="SettingsMenuPopup" parent="Camera3D/CanvasLayer/HUD/PauseMenuPopup" instance=ExtResource("2_aucd7")]
+[node name="SettingsMenuPopup" parent="Camera3D/CanvasLayer/HUD" instance=ExtResource("2_aucd7")]
 unique_name_in_owner = true
 visible = false
+borderless = false
+
+[node name="Ground" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="Area3D" type="Area3D" parent="Ground"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+mesh = SubResource("PlaneMesh_30sfg")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+shape = SubResource("WorldBoundaryShape3D_a4f8m")
 
 [node name="Characters" type="Node3D" parent="."]
+unique_name_in_owner = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Characters"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30333, 0, -2.36628)
-mesh = SubResource("BoxMesh_7g2up")
+[node name="Objects" type="Node3D" parent="."]
 
 [connection signal="pressed" from="Camera3D/CanvasLayer/HUD/PauseBattleButton" to="." method="On_PauseBattleButton_Pressed"]
 [connection signal="popup_hide" from="Camera3D/CanvasLayer/HUD/PauseMenuPopup" to="." method="On_PauseMenuPopup_PopupHide"]

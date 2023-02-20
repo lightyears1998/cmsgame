@@ -1,21 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://6phl40durwor"]
 
 [ext_resource type="PackedScene" uid="uid://cx6yq8awwkqv3" path="res://Scenes/BattleScene.tscn" id="1_fdqdi"]
+[ext_resource type="Script" path="res://Tests/BattleSceneTest.cs" id="1_tuul4"]
 
-[sub_resource type="CSharpScript" id="CSharpScript_cjbd5"]
-script/source = "namespace CMSGame
-{
-	public partial class BattleSceneTest : Node2D
-	{
-		public override void _Ready()
-		{
-		}
-	}
-}
-
-"
-
-[node name="BattleSceneTest" type="Node2D"]
-script = SubResource("CSharpScript_cjbd5")
+[node name="BattleSceneTest" type="Node3D"]
+script = ExtResource("1_tuul4")
 
 [node name="BattleScene" parent="." instance=ExtResource("1_fdqdi")]

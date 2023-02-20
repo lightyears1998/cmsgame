@@ -1,10 +1,9 @@
 namespace CMSGame
 {
-	public partial class BattleSceneTest : Node2D
+    public partial class BattleSceneTest : Node3D
 	{
 		public override void _Ready()
 		{
 		}
 	}
 }
-

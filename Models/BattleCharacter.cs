@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class BattleCharacter : Node2D
+    public partial class BattleCharacter : CharacterBody3D
     {
         public BattleFieldPosition BattleFieldPosition;
 
