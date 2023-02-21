@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cp6aa655vykt1" path="res://Scenes/BattleScene.tscn" id="1_fdqdi"]
 [ext_resource type="Script" path="res://Tests/BattleSceneTest.cs" id="1_tuul4"]
-[ext_resource type="PackedScene" uid="uid://igk5375j1keq" path="res://Nodes/BattleCharacterNode.tscn" id="3_nau0d"]
+[ext_resource type="PackedScene" uid="uid://dje5jk73mjb6a" path="res://Nodes/BattleCharacterNode.tscn" id="3_nau0d"]
 [ext_resource type="Texture2D" uid="uid://w6qckexp2he1" path="res://Temp/Characters/2_73.png" id="4_jnah0"]
 [ext_resource type="Texture2D" uid="uid://du6o3upum6lkr" path="res://Temp/Characters/3_0.png" id="5_4vahd"]
 [ext_resource type="Texture2D" uid="uid://cl11bl8lcnwha" path="res://Temp/Characters/4_2.png" id="6_6563q"]
