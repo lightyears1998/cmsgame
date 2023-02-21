@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-
 namespace CMSGame
 {
     public static class NodeExtension
@@ -10,7 +7,7 @@ namespace CMSGame
             return parent.GetNode<T>($"/root/{autoloadName}");
         }
 
-        public static void GetAutoloadNode<T>(this Node parent, ref T node, string autoloadName) where T : Node
+        public static void GetAutoloadNode<T>(this Node parent, ref T? node, string autoloadName) where T : Node
         {
             node = parent.GetAutoloadNode<T>(autoloadName);
         }
@@ -20,7 +17,7 @@ namespace CMSGame
             return parent.GetNode<T>($"%{uniqueName}");
         }
 
-        public static void GetUniqueNode<T>(this Node parent, ref T node, string uniqueName) where T : Node
+        public static void GetUniqueNode<T>(this Node parent, ref T? node, string uniqueName) where T : Node
         {
             node = parent.GetUniqueNode<T>(uniqueName);
         }

@@ -4,7 +4,7 @@ namespace CMSGame
 {
     public class BattleCharacter
     {
-        public List<BattleGoal> Goals;
+        public List<BattleGoal> Goals = new();
 
         public Character Character;
 

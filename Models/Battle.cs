@@ -4,7 +4,7 @@ namespace CMSGame
 {
     public class Battle
     {
-        public List<BattleParty> Parties;
+        public List<BattleParty> Parties = new();
 
         public BattleParty Attacker;
 
@@ -12,9 +12,11 @@ namespace CMSGame
 
         public BattleParty PlayerParty;
 
-        public Battle()
+        public Battle(BattleParty attacker, BattleParty defender, BattleParty playerParty)
         {
-            // load characters of the attacker and defender;
+            Attacker = attacker;
+            Defender = defender;
+            PlayerParty = playerParty;
         }
 
         public void Begin()

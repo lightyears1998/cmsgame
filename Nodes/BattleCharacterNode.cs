@@ -6,15 +6,15 @@ namespace CMSGame
         public delegate void MousePressedEventHandler(Vector3 position);
 
         [Export]
-        public Texture SpriteTexture;
+        public Texture SpriteTexture = new();
 
-        public BattleFieldPosition BattleFieldPosition;
+        public BattleFieldPosition? BattleFieldPosition;
 
-        public Character Character;
+        public Character? Character;
 
-        public Sprite3D Sprite3D;
+        public Sprite3D? Sprite3D;
 
-        public Label3D StatusLabel;
+        public Label3D? StatusLabel;
 
         public int ActionPoint;
 
@@ -41,7 +41,7 @@ namespace CMSGame
 
         public void UpdateUI()
         {
-            StatusLabel.Text = $"HP {120}\nAP {ActionPoint}";
+            StatusLabel!.Text = $"HP {120}\nAP {ActionPoint}";
         }
 
         public override void _InputEvent(Camera3D camera, InputEvent @event, Vector3 position, Vector3 normal, int shapeIdx)

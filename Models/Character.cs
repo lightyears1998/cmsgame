@@ -2,9 +2,9 @@ namespace CMSGame
 {
     public class Character
     {
-        public string FamilyName;
+        public string FamilyName = string.Empty;
 
-        public string GivenName;
+        public string GivenName = string.Empty;
 
         public string Name => FamilyName + GivenName;
 

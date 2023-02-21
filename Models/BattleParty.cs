@@ -10,6 +10,6 @@ namespace CMSGame
 
         public bool IsPlayerParty;
 
-        public List<BattleCharacter> Characters;
+        public List<BattleCharacter> Characters = new();
     }
 }

@@ -4,8 +4,8 @@ namespace CMSGame
 {
     public abstract class Skill
     {
-        public string Name;
+        public string Name = string.Empty;
 
-        public List<Effect> Effects;
+        public List<Effect> Effects = new();
     }
 }

@@ -2,11 +2,11 @@ namespace CMSGame
 {
     public partial class BattleScene : Node3D
     {
-        public BattleHUD HUD;
+        public BattleHUD? HUD;
 
-        public Popup PauseMenuPopup;
+        public Popup? PauseMenuPopup;
 
-        public Popup SettingsMenuPopup;
+        public Popup? SettingsMenuPopup;
 
         public double Time;
 
@@ -17,7 +17,7 @@ namespace CMSGame
         public override void _Ready()
         {
             this.GetUniqueNode(ref HUD, nameof(HUD));
-            PauseMenuPopup = HUD.PauseMenuPopup;
+            PauseMenuPopup = HUD!.PauseMenuPopup;
             SettingsMenuPopup = HUD.SettingsMenuPopup;
         }
 
@@ -44,7 +44,7 @@ namespace CMSGame
 
         public void UpdateUI()
         {
-            HUD.BattleTimeLabel.Text = TimeHelper.FormatTime(Time);
+            HUD!.BattleTimeLabel!.Text = TimeHelper.FormatTime(Time);
         }
 
         private void TogglePauseBattle()
@@ -56,7 +56,7 @@ namespace CMSGame
         {
             IsPauseBeforePauseMenuPopup = IsPause;
             IsPause = true;
-            PauseMenuPopup.PopupCentered();
+            PauseMenuPopup!.PopupCentered();
         }
 
         private void On_PauseBattleButton_Pressed()
@@ -71,12 +71,12 @@ namespace CMSGame
 
         private void On_ResumeBattleButton_Pressed()
         {
-            PauseMenuPopup.Hide();
+            PauseMenuPopup!.Hide();
         }
 
         private void On_SettingsMenuButton_Pressed()
         {
-            SettingsMenuPopup.PopupCentered();
+            SettingsMenuPopup!.PopupCentered();
         }
     }
 }

@@ -2,7 +2,7 @@ namespace CMSGame
 {
     public class Goal
     {
-        public string Name;
+        public string Name = string.Empty;
 
         public bool IsValid;
 

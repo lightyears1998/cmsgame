@@ -4,13 +4,13 @@ namespace CMSGame
     {
         public Vector2 LastMousePressedPosition;
 
-        public Label BattleTimeLabel;
+        public Label? BattleTimeLabel;
 
-        public Popup PauseMenuPopup;
+        public Popup? PauseMenuPopup;
 
-        public Popup SettingsMenuPopup;
+        public Popup? SettingsMenuPopup;
 
-        public BattleActionMenu BattleActionMenu;
+        public BattleActionMenu? BattleActionMenu;
 
         public override void _Ready()
         {
@@ -27,7 +27,7 @@ namespace CMSGame
                 if (mouseButtonEvent.Pressed)
                 {
                     LastMousePressedPosition = mouseButtonEvent.Position;
-                    var battleActionMenuRect = new Rect2(BattleActionMenu.Position, BattleActionMenu.Size);
+                    var battleActionMenuRect = new Rect2(BattleActionMenu!.Position, BattleActionMenu.Size);
                     if (!battleActionMenuRect.HasPoint(LastMousePressedPosition))
                     {
                         BattleActionMenu.Visible = false;
@@ -39,7 +39,7 @@ namespace CMSGame
 
         public void ShowActionMenu(Vector2 position)
         {
-            if (!BattleActionMenu.Visible)
+            if (!BattleActionMenu!.Visible)
             {
                 BattleActionMenu.Position = position;
                 BattleActionMenu.Visible = true;

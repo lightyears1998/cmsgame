@@ -2,7 +2,7 @@ namespace CMSGame
 {
     public partial class BattleSceneTest : Node3D
 	{
-        public BattleScene BattleScene;
+        public BattleScene? BattleScene;
 
         public override void _Ready()
 		{
@@ -11,7 +11,7 @@ namespace CMSGame
 
         public void On_BattleCharacter_MousePressed(Vector3 _)
         {
-            BattleScene.HUD.ShowActionMenu(BattleScene.HUD.LastMousePressedPosition);
+            BattleScene!.HUD.ShowActionMenu(BattleScene.HUD.LastMousePressedPosition);
         }
 	}
 }

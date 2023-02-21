@@ -2,13 +2,13 @@ namespace CMSGame
 {
     public partial class BattleActionMenu : VBoxContainer
     {
-        public VBoxContainer DynamicActions;
+        public VBoxContainer? DynamicActions;
 
-        public Button ItemActionButton;
+        public Button? ItemActionButton;
 
-        public Button SkillActionButton;
+        public Button? SkillActionButton;
 
-        public Button CommandActionButton;
+        public Button? CommandActionButton;
 
         public override void _Ready()
         {

@@ -4,9 +4,9 @@ namespace CMSGame
 {
     public partial class GameSettings : Node
     {
-        public BattleSettings OriginalBattleSettings;
+        public BattleSettings? OriginalBattleSettings;
 
-        public BattleSettings BattleSettings;
+        public BattleSettings? BattleSettings;
 
         protected string BattleSettingsSavePath = new GodotPath("user://Settings/BattleSettings.json");
 
