@@ -11,7 +11,7 @@ namespace CMSGame
 
         public void On_BattleCharacter_MousePressed(Vector3 _)
         {
-            BattleScene!.HUD.ShowActionMenu(BattleScene.HUD.LastMousePressedPosition);
+            BattleScene!.HUD!.ShowActionMenu(BattleScene.HUD.LastMousePressedPosition);
         }
 	}
 }
