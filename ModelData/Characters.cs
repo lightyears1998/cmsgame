@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public class Characters
+    public static class Characters
     {
 
     }

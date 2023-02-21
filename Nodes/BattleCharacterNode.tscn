@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://igk5375j1keq"]
+[gd_scene load_steps=4 format=3 uid="uid://dje5jk73mjb6a"]
 
 [ext_resource type="Texture2D" uid="uid://cnilysgmgw8n4" path="res://Temp/Characters/1_19.png" id="1_o3tjt"]
-[ext_resource type="Script" path="res://Models/BattleCharacter.cs" id="2_vbdi8"]
+[ext_resource type="Script" path="res://Nodes/BattleCharacterNode.cs" id="2_vbdi8"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r28jb"]
 size = Vector3(0.84, 1.46, 0.17)
