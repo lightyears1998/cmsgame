@@ -26,8 +26,8 @@ GameSettings="*res://Autoloads/GameSettings.cs"
 
 [display]
 
-window/size/viewport_width=1600
-window/size/viewport_height=960
+window/size/viewport_width=1680
+window/size/viewport_height=1050
 
 [dotnet]
 
