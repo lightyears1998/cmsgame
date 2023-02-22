@@ -4,6 +4,11 @@
 
 - [设计文档](https://docs.qq.com/doc/DTW1FWFFNalZUcXFY)
 
+## 开发环境
+
+- Godot 4.0 with Mono
+- [.NET 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0)
+
 ## 素材
 
 ### 图像素材
