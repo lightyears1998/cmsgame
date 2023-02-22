@@ -1,6 +1,6 @@
 <Project Sdk="Godot.NET.Sdk/4.0.0-rc.3">
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <Nullable>enable</Nullable>
     <DefaultItemExcludes>$(DefaultItemExcludes);ScriptTemplates\**\*.cs</DefaultItemExcludes>
