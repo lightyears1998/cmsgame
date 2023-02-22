@@ -41,7 +41,7 @@ namespace CMSGame
 
         public void UpdateUI()
         {
-            StatusLabel!.Text = $"HP {120}\nAP {ActionPoint}";
+            StatusLabel!.Text = $"HP {Character!.HealthPoint}/{Character.MaxHealthPoint}\nAP {ActionPoint}";
         }
 
         public override void _InputEvent(Camera3D camera, InputEvent @event, Vector3 position, Vector3 normal, int shapeIdx)
