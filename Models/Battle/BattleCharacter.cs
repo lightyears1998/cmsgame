@@ -1,10 +1,8 @@
-using System.Collections.Generic;
-
 namespace CMSGame
 {
     public class BattleCharacter
     {
-        public List<BattleGoal> Goals = new();
+        public List<Goal<BattleContext>> Goals = new();
 
         public Character Character;
 

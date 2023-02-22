@@ -1,8 +1,6 @@
-using System.Collections.Generic;
-
 namespace CMSGame
 {
-    public class Goal<TContext>
+    public class Goal<TContext> where TContext : IGoalContext
     {
         public string Name = string.Empty;
 
@@ -21,6 +19,11 @@ namespace CMSGame
         {
             return BasePriority + PriorityModifiers.Sum(modifier => modifier.Execute());
         }
+    }
+
+    public interface IGoalContext
+    {
+        IList<Action> ListActions();
     }
 
     public abstract class GoalModifier<TContext>
