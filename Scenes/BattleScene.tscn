@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Scenes/BattleScene.cs" id="1_n6bn7"]
 [ext_resource type="PackedScene" uid="uid://dyyrp4px1km16" path="res://Components/BattleHUD.tscn" id="2_u4666"]
-[ext_resource type="Texture2D" uid="uid://1i23jgrik6hr" path="res://Temp/Textures/Bricks_05-256x256.png" id="3_15ikw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vrgig"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -18,7 +17,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udghy"]
-albedo_texture = ExtResource("3_15ikw")
 uv1_scale = Vector3(20, 20, 20)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_30sfg"]
