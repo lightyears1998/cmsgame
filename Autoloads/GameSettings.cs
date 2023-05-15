@@ -2,11 +2,16 @@ using Newtonsoft.Json;
 
 namespace CMSGame
 {
+    /// <summary>
+    /// 游戏设置持久化
+    ///
+    /// TODO 添加 VideoSettings 并重构
+    /// </summary>
     public partial class GameSettings : Node
     {
         public BattleSettings? OriginalBattleSettings;
 
-        public BattleSettings? BattleSettings;
+        public BattleSettings BattleSettings { set; get; } = new();
 
         protected string BattleSettingsSavePath = new GodotPath("user://Settings/BattleSettings.json");
 

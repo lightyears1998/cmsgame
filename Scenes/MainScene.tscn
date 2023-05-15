@@ -12,40 +12,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kso8c")
 
-[node name="GameTitleLabel" type="Label" parent="."]
+[node name="BackgroundImage" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -137.5
-offset_right = 137.5
-offset_bottom = 26.0
-grow_horizontal = 2
-text = "The Country of Mountains and Seas"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -52.5
-offset_top = -20.0
-offset_right = 52.5
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "背景图像"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BattleDemo1Button" type="Button" parent="VBoxContainer"]
+[node name="GameMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 85.0
+offset_top = -50.5
+offset_right = 221.0
+offset_bottom = 50.5
+grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="GameMenu"]
 layout_mode = 2
-text = "战斗场景 Demo 1"
+text = "继续游戏"
 
-[node name="SettingsPopupButton" type="Button" parent="VBoxContainer"]
+[node name="StartButton" type="Button" parent="GameMenu"]
 layout_mode = 2
-text = "游戏设置"
+text = "开始游戏"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="SettingsButton" type="Button" parent="GameMenu"]
+layout_mode = 2
+text = "设置"
+
+[node name="QuitButton" type="Button" parent="GameMenu"]
 layout_mode = 2
 text = "退出"
 
@@ -53,6 +54,6 @@ text = "退出"
 unique_name_in_owner = true
 visible = false
 
-[connection signal="pressed" from="VBoxContainer/BattleDemo1Button" to="." method="On_BattleDemo1Button_Pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsPopupButton" to="." method="On_SettingsPopupButton_Pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="On_QuitButton_Pressed"]
+[connection signal="pressed" from="GameMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
+[connection signal="pressed" from="GameMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
+[connection signal="pressed" from="GameMenu/QuitButton" to="." method="On_QuitButton_Pressed"]
