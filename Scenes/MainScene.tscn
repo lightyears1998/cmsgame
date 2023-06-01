@@ -36,7 +36,7 @@ grow_vertical = 2
 
 [node name="ContinueButton" type="Button" parent="GameMenu"]
 layout_mode = 2
-text = "继续游戏"
+text = "战斗场景 Demo 1 （第3版）"
 
 [node name="StartButton" type="Button" parent="GameMenu"]
 layout_mode = 2

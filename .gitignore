@@ -6,5 +6,6 @@
 .vs
 
 # Temporary files
+Temp
 .mono
 *.old
