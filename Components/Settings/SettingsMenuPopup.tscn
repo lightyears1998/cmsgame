@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cslqihnfw0me2"]
 
-[ext_resource type="Script" path="res://Components/SettingsMenuPopup.cs" id="1_it4yp"]
-[ext_resource type="PackedScene" uid="uid://blk2uswpo2a7k" path="res://Components/SettingsMenu.tscn" id="2_qc1kk"]
+[ext_resource type="Script" path="res://Components/Settings/SettingsMenuPopup.cs" id="1_it4yp"]
+[ext_resource type="PackedScene" uid="uid://blk2uswpo2a7k" path="res://Components/Settings/SettingsMenu.tscn" id="2_qc1kk"]
 
 [node name="SettingsMenuPopup" type="Popup"]
 size = Vector2i(172, 101)

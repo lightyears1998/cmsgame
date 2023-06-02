@@ -24,29 +24,30 @@ text = "背景图像"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="GameMenu" type="VBoxContainer" parent="."]
+[node name="StartMenu" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 85.0
-offset_top = -50.5
-offset_right = 221.0
-offset_bottom = 50.5
+offset_left = 151.0
+offset_top = -65.5
+offset_right = 287.0
+offset_bottom = 65.5
 grow_vertical = 2
+theme_override_constants/separation = 16
 
-[node name="StartButton" type="Button" parent="GameMenu"]
+[node name="StartButton" type="Button" parent="StartMenu"]
 layout_mode = 2
 text = "开始游戏"
 
-[node name="SettingsButton" type="Button" parent="GameMenu"]
+[node name="SettingsButton" type="Button" parent="StartMenu"]
 layout_mode = 2
 text = "设置"
 
-[node name="QuitButton" type="Button" parent="GameMenu"]
+[node name="QuitButton" type="Button" parent="StartMenu"]
 layout_mode = 2
 text = "退出"
 
-[connection signal="pressed" from="GameMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
-[connection signal="pressed" from="GameMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
-[connection signal="pressed" from="GameMenu/QuitButton" to="." method="On_QuitButton_Pressed"]
+[connection signal="pressed" from="StartMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
+[connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
+[connection signal="pressed" from="StartMenu/QuitButton" to="." method="On_QuitButton_Pressed"]
