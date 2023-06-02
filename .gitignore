@@ -9,3 +9,7 @@
 Temp
 .mono
 *.old
+
+# Large binary assets
+*.ttf
+*.otf
