@@ -1,50 +1,88 @@
 using Newtonsoft.Json;
+using System.Runtime;
 
 namespace CMSGame
 {
     /// <summary>
-    /// ”Œœ∑…Ë÷√≥÷æ√ªØ
-    ///
-    /// TODO ÃÌº” VideoSettings ≤¢÷ÿππ
+    /// Ê∏∏ÊàèËÆæÁΩÆÊåÅ‰πÖÂåñ
     /// </summary>
     public partial class GameSettings : Node
     {
-        public BattleSettings? OriginalBattleSettings;
+        protected Dictionary<Type, SettingsBase> CurrentSettings = new();
 
-        public BattleSettings BattleSettings { set; get; } = new();
+        protected Dictionary<Type, SettingsBase> OriginalSettings = new();
 
-        protected string BattleSettingsSavePath = new GodotPath("user://Settings/BattleSettings.json");
+        protected Dictionary<Type, string> SettingsPaths = new();
+
+        public BattleSettings BattleSettings => GetSettings<BattleSettings>();
+
+        public VideoSettings VideoSettings => GetSettings<VideoSettings>();
+
+        public GameSettings()
+        {
+            RegisterAllSettings();
+        }
 
         public override void _Ready()
         {
             MakeDirectories();
+            LoadAllSettings();
+        }
 
-            OriginalBattleSettings = GetSettings<BattleSettings>(BattleSettingsSavePath);
-            BattleSettings = OriginalBattleSettings with { };
+        protected void RegisterAllSettings()
+        {
+            RegisterSettings<BattleSettings>("BattleSettings.json");
+            RegisterSettings<VideoSettings>("VideoSettings.json");
+        }
+
+        protected void RegisterSettings<TSettings>(string filename) where TSettings : SettingsBase, new()
+        {
+            var defaultSettings = new TSettings();
+            CurrentSettings.Add(typeof(TSettings), defaultSettings);
+            SettingsPaths.Add(typeof(TSettings), new GodotPath($"user://Settings/{filename}"));
+        }
+
+        protected void LoadAllSettings()
+        {
+            foreach (var settingsType in SettingsPaths.Keys)
+            {
+                LoadSettings(settingsType);
+            }
         }
 
         public override void _ExitTree()
         {
-            if (BattleSettings != OriginalBattleSettings)
+            foreach (var settingsType in SettingsPaths.Keys)
             {
-                SaveSettings(BattleSettingsSavePath);
+                if (!OriginalSettings.ContainsKey(settingsType) || OriginalSettings[settingsType] != CurrentSettings[settingsType])
+                {
+                    SaveSettings(settingsType);
+                }
             }
         }
 
-        private void MakeDirectories()
+        private static void MakeDirectories()
         {
             DirAccess.MakeDirRecursiveAbsolute("user://Settings/");
         }
 
-        private TSettings GetSettings<TSettings>(string path)
-            where TSettings : SettingsBase, new()
+        private void LoadSettings(Type settingsType)
         {
-            string settings_text = ReadFileAsString(path);
-            var settings = JsonConvert.DeserializeObject<TSettings>(settings_text) ?? new TSettings();
-            return settings;
+            string settingsText = ReadFileAsString(SettingsPaths[settingsType]);
+            var settings = JsonConvert.DeserializeObject(settingsText, settingsType);
+            if (settings != null)
+            {
+                OriginalSettings[settingsType] = (SettingsBase)settings;
+                CurrentSettings[settingsType] = (SettingsBase)settings;
+            }
         }
 
-        private string ReadFileAsString(string path)
+        public TSettings GetSettings<TSettings>() where TSettings : SettingsBase, new()
+        {
+            return (TSettings)CurrentSettings[typeof(TSettings)];
+        }
+
+        private static string ReadFileAsString(string path)
         {
             if (FileAccess.FileExists(path))
             {
@@ -54,11 +92,11 @@ namespace CMSGame
             return "null";
         }
 
-        private void SaveSettings(string path)
+        private void SaveSettings(Type settingsType)
         {
-            string settings_text = JsonConvert.SerializeObject(BattleSettings);
-            using var file = FileAccess.Open(path, FileAccess.ModeFlags.Write);
-            file.StoreString(settings_text);
+            string settingsText = JsonConvert.SerializeObject(CurrentSettings[settingsType]);
+            using var file = FileAccess.Open(SettingsPaths[settingsType], FileAccess.ModeFlags.Write);
+            file.StoreString(settingsText);
         }
     }
 
@@ -67,7 +105,8 @@ namespace CMSGame
     }
 
     public record class BattleSettings : SettingsBase
-    {
-        public bool PauseBattleWhenCharacterIsSelected = true;
-    }
+    { }
+
+    public record class VideoSettings : SettingsBase
+    { }
 }

@@ -4,6 +4,7 @@
 # IDE
 .vscode
 .vs
+Properties/launchSettings.json
 
 # Temporary files
 Temp
