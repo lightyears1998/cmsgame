@@ -1,5 +1,4 @@
 using Newtonsoft.Json;
-using System.Runtime;
 
 namespace CMSGame
 {
@@ -109,4 +108,17 @@ namespace CMSGame
 
     public record class VideoSettings : SettingsBase
     { }
+
+    public record class AudioSettings : SettingsBase
+    {
+        /// <summary>
+        /// 音乐音量
+        /// </summary>
+        public double MusicVolume = 80;
+
+        /// <summary>
+        /// 音效音量
+        /// </summary>
+        public double SoundEffectVolume = 80;
+    }
 }

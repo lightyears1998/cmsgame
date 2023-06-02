@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c3ovsoq6o7y3t"]
 
 [ext_resource type="Script" path="res://Scenes/MainScene.cs" id="1_kso8c"]
-[ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/SettingsMenuPopup.tscn" id="2_d0nn6"]
+[ext_resource type="Theme" uid="uid://cn55cr5w4yy3n" path="res://Themes/UI.tres" id="1_y72s3"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -10,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_y72s3")
 script = ExtResource("1_kso8c")
 
 [node name="BackgroundImage" type="Label" parent="."]
@@ -34,10 +35,6 @@ offset_right = 221.0
 offset_bottom = 50.5
 grow_vertical = 2
 
-[node name="ContinueButton" type="Button" parent="GameMenu"]
-layout_mode = 2
-text = "战斗场景 Demo 1 （第3版）"
-
 [node name="StartButton" type="Button" parent="GameMenu"]
 layout_mode = 2
 text = "开始游戏"
@@ -49,10 +46,6 @@ text = "设置"
 [node name="QuitButton" type="Button" parent="GameMenu"]
 layout_mode = 2
 text = "退出"
-
-[node name="SettingsPopup" parent="." instance=ExtResource("2_d0nn6")]
-unique_name_in_owner = true
-visible = false
 
 [connection signal="pressed" from="GameMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
 [connection signal="pressed" from="GameMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]

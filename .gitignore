@@ -11,6 +11,9 @@ Temp
 .mono
 *.old
 
-# Large binary assets
+# Fonts
 *.ttf
 *.otf
+
+# Audio
+*.ogg

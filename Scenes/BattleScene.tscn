@@ -1,63 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cp6aa655vykt1"]
+[gd_scene load_steps=2 format=3 uid="uid://cp6aa655vykt1"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene.cs" id="1_n6bn7"]
-[ext_resource type="PackedScene" uid="uid://dyyrp4px1km16" path="res://Components/BattleHUD.tscn" id="2_u4666"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vrgig"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_26whx"]
-sky_material = SubResource("ProceduralSkyMaterial_vrgig")
-
-[sub_resource type="Environment" id="Environment_hv4sx"]
-background_mode = 2
-sky = SubResource("Sky_26whx")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udghy"]
-uv1_scale = Vector3(20, 20, 20)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_30sfg"]
-material = SubResource("StandardMaterial3D_udghy")
-size = Vector2(40, 20)
-
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_a4f8m"]
-
-[node name="BattleScene" type="Node3D"]
+[node name="BattleScene" type="Node2D"]
 script = ExtResource("1_n6bn7")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_hv4sx")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.558497, 0.829506, 0, -0.829506, 0.558497, 0, 10.6856, 0)
-shadow_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 2.35115, 0)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
-
-[node name="HUD" parent="Camera3D/CanvasLayer" instance=ExtResource("2_u4666")]
-unique_name_in_owner = true
-
-[node name="Ground" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="Area3D" type="Area3D" parent="Ground"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-mesh = SubResource("PlaneMesh_30sfg")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-shape = SubResource("WorldBoundaryShape3D_a4f8m")
-
-[node name="Characters" type="Node3D" parent="."]
-unique_name_in_owner = true
-
-[node name="Objects" type="Node3D" parent="."]

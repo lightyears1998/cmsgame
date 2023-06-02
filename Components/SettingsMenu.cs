@@ -10,13 +10,10 @@ namespace CMSGame
         {
             this.GetAutoloadNode(ref Settings, nameof(GameSettings));
             this.GetUniqueNode(ref PauseBattleWhenCharacterIsSelectedCheckBox, nameof(PauseBattleWhenCharacterIsSelectedCheckBox));
-
-            PauseBattleWhenCharacterIsSelectedCheckBox!.ButtonPressed = Settings!.BattleSettings!.PauseBattleWhenCharacterIsSelected;
         }
 
         public void On_PauseBattleWhenCharacterIsSelectedCheckBox_Toggled(bool pressed)
         {
-            Settings!.BattleSettings!.PauseBattleWhenCharacterIsSelected = pressed;
         }
     }
 }
