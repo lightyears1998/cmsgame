@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3ovsoq6o7y3t"]
+[gd_scene load_steps=4 format=3 uid="uid://c3ovsoq6o7y3t"]
 
 [ext_resource type="Script" path="res://Scenes/MainScene.cs" id="1_kso8c"]
 [ext_resource type="Theme" uid="uid://cn55cr5w4yy3n" path="res://Themes/UI.tres" id="1_y72s3"]
+[ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/Settings/SettingsMenuPopup.tscn" id="3_1d7q7"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -10,7 +11,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_y72s3")
 script = ExtResource("1_kso8c")
 
 [node name="BackgroundImage" type="Label" parent="."]
@@ -34,6 +34,7 @@ offset_top = -65.5
 offset_right = 287.0
 offset_bottom = 65.5
 grow_vertical = 2
+theme = ExtResource("1_y72s3")
 theme_override_constants/separation = 16
 
 [node name="StartButton" type="Button" parent="StartMenu"]
@@ -47,6 +48,12 @@ text = "设置"
 [node name="QuitButton" type="Button" parent="StartMenu"]
 layout_mode = 2
 text = "退出"
+
+[node name="SettingsMenuPopup" parent="." instance=ExtResource("3_1d7q7")]
+unique_name_in_owner = true
+title = "游戏设置"
+visible = false
+borderless = false
 
 [connection signal="pressed" from="StartMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
 [connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]

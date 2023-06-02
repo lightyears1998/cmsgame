@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameSettings="*res://Autoloads/GameSettings.cs"
+GameSettingsNode="*res://Autoloads/GameSettingsNode.cs"
 BackgroundMusicPlayer="*res://Autoloads/BackgroundMusicPlayer.tscn"
 
 [display]

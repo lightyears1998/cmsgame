@@ -4,7 +4,7 @@ namespace CMSGame
     {
         public void On_SettingsPopupButton_Pressed()
         {
-            GetNode<Popup>("%SettingsPopup").PopupCentered();
+            GetNode<Popup>("%SettingsMenuPopup").PopupCentered();
         }
 
         public void On_QuitButton_Pressed()

@@ -2,7 +2,7 @@ namespace CMSGame
 {
     public partial class AudioSettingsMenu : VBoxContainer
     {
-        public GameSettings? GameSettings;
+        public GameSettingsNode? Settings;
 
         public HSlider? MasterVolumeSlider;
 
@@ -12,7 +12,7 @@ namespace CMSGame
 
         public override void _Ready()
         {
-            this.GetAutoloadNode(ref GameSettings, nameof(GameSettings));
+            this.GetAutoloadNode(ref Settings, nameof(GameSettingsNode));
 
             MasterVolumeSlider = this.GetUniqueNode<HSlider>(nameof(MasterVolumeSlider));
             MusicVolumeSlider = this.GetUniqueNode<HSlider>(nameof(MusicVolumeSlider));

@@ -2,11 +2,11 @@ namespace CMSGame
 {
     public partial class SettingsMenu : TabContainer
     {
-        public GameSettings? Settings;
+        public GameSettingsNode? Settings;
 
         public override void _Ready()
         {
-            this.GetAutoloadNode(ref Settings, nameof(GameSettings));
+            this.GetAutoloadNode(ref Settings, nameof(GameSettingsNode));
         }
     }
 }

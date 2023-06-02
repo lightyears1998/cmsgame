@@ -4,20 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://blk2uswpo2a7k" path="res://Components/Settings/SettingsMenu.tscn" id="2_qc1kk"]
 
 [node name="SettingsMenuPopup" type="Popup"]
-size = Vector2i(172, 101)
+size = Vector2i(800, 485)
 visible = true
 script = ExtResource("1_it4yp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 800.0
+offset_bottom = 66.0
+alignment = 1
 
 [node name="SettingsMenu" parent="VBoxContainer" instance=ExtResource("2_qc1kk")]
+custom_minimum_size = Vector2(800, 450)
 layout_mode = 2
 
-[node name="ConfirmButton" type="Button" parent="VBoxContainer"]
+[node name="HidePopupButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "保存并退出"
+size_flags_horizontal = 4
+text = "关闭"
 
-[connection signal="pressed" from="VBoxContainer/ConfirmButton" to="." method="On_ConfirmButton_Pressed"]
+[connection signal="pressed" from="VBoxContainer/HidePopupButton" to="." method="On_HidePopupButton_Pressed"]
