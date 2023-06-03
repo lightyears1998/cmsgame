@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class MainScene : Control
+    public partial class LandingScene : Control
     {
         public void On_SettingsPopupButton_Pressed()
         {

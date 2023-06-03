@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3ovsoq6o7y3t"]
 
-[ext_resource type="Script" path="res://Scenes/MainScene/MainScene.cs" id="1_115p1"]
-[ext_resource type="Theme" uid="uid://cn55cr5w4yy3n" path="res://Themes/UI.tres" id="2_05oip"]
-[ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/Settings/SettingsMenuPopup.tscn" id="3_c8lv8"]
-[ext_resource type="Script" path="res://Scenes/MainScene/ChangelogContainer.cs" id="4_ccxmt"]
+[ext_resource type="Script" path="res://Scenes/LandingScene/LandingScene.cs" id="1_m2rl1"]
+[ext_resource type="Theme" uid="uid://cn55cr5w4yy3n" path="res://Themes/UI.tres" id="2_js62n"]
+[ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/Settings/SettingsMenuPopup.tscn" id="3_6b4hi"]
+[ext_resource type="Script" path="res://Scenes/LandingScene/ChangelogContainer.cs" id="4_7m05h"]
 
 [node name="MainScene" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_115p1")
+script = ExtResource("1_m2rl1")
 
 [node name="BackgroundImage" type="Label" parent="."]
 layout_mode = 1
@@ -35,7 +35,7 @@ offset_top = -65.5
 offset_right = 287.0
 offset_bottom = 65.5
 grow_vertical = 2
-theme = ExtResource("2_05oip")
+theme = ExtResource("2_js62n")
 theme_override_constants/separation = 16
 
 [node name="StartButton" type="Button" parent="StartMenu"]
@@ -50,7 +50,7 @@ text = "设置"
 layout_mode = 2
 text = "退出"
 
-[node name="SettingsMenuPopup" parent="." instance=ExtResource("3_c8lv8")]
+[node name="SettingsMenuPopup" parent="." instance=ExtResource("3_6b4hi")]
 unique_name_in_owner = true
 title = "游戏设置"
 visible = false
@@ -69,11 +69,11 @@ offset_right = -60.0
 offset_bottom = 374.0
 grow_horizontal = 0
 grow_vertical = 2
-script = ExtResource("4_ccxmt")
+script = ExtResource("4_7m05h")
 
 [node name="Label" type="Label" parent="ChangelogContainer"]
 layout_mode = 2
-theme = ExtResource("2_05oip")
+theme = ExtResource("2_js62n")
 text = "更新日志"
 horizontal_alignment = 1
 

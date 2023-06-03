@@ -16,7 +16,7 @@ config/name_localized={
 "zh_Hans": "山与海的国",
 "zh_Hant": "山與海的囯"
 }
-run/main_scene="res://Scenes/MainScene/MainScene.tscn"
+run/main_scene="res://Scenes/LandingScene/LandingScene.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
