@@ -17,6 +17,7 @@ config/name_localized={
 "zh_Hant": "山與海的囯"
 }
 run/main_scene="res://Scenes/LandingScene/LandingScene.tscn"
+config/project_settings_override="user://Engine.cfg"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

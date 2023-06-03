@@ -9,7 +9,7 @@ namespace CMSGame
 
     public record class VideoSettings : GameSettings
     {
-        public bool UseFullScreen = false;
+        public bool UseFullScreen { set; get; } = false;
     }
 
     public record class AudioSettings : GameSettings
@@ -17,11 +17,11 @@ namespace CMSGame
         /// <summary>
         /// 音乐音量
         /// </summary>
-        public double MusicVolume = 80;
+        public double MusicVolume { set; get; } = 80;
 
         /// <summary>
         /// 音效音量
         /// </summary>
-        public double SoundEffectVolume = 80;
+        public double SoundEffectVolume { set; get; } = 80;
     }
 }

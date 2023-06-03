@@ -11,7 +11,7 @@ namespace CMSGame
     {
         protected Dictionary<Type, GameSettings> CurrentSettings = new();
 
-        protected Dictionary<Type, GameSettings> OriginalSettings = new();
+        protected Dictionary<Type, GameSettings> PreviousSettings = new();
 
         protected Dictionary<Type, string> SettingsPaths = new();
 
@@ -24,12 +24,9 @@ namespace CMSGame
         public GameSettingsNode()
         {
             RegisterAllSettings();
-        }
-
-        public override void _Ready()
-        {
             MakeDirectories();
             LoadAllSettings();
+            ApplyVideoSettings();
         }
 
         protected void RegisterAllSettings()
@@ -58,7 +55,7 @@ namespace CMSGame
         {
             foreach (var settingsType in SettingsPaths.Keys)
             {
-                if (!OriginalSettings.ContainsKey(settingsType) || OriginalSettings[settingsType] != CurrentSettings[settingsType])
+                if (!PreviousSettings.ContainsKey(settingsType) || PreviousSettings[settingsType] != CurrentSettings[settingsType])
                 {
                     SaveSettings(settingsType);
                 }
@@ -76,8 +73,8 @@ namespace CMSGame
             var settings = JsonConvert.DeserializeObject(settingsText, settingsType);
             if (settings != null)
             {
-                OriginalSettings[settingsType] = (GameSettings)settings;
-                CurrentSettings[settingsType] = (GameSettings)settings;
+                PreviousSettings[settingsType] = (GameSettings)settings;
+                CurrentSettings[settingsType] = (GameSettings)settings with { };
             }
         }
 
@@ -101,6 +98,18 @@ namespace CMSGame
             string settingsText = JsonConvert.SerializeObject(CurrentSettings[settingsType]);
             using var file = FileAccess.Open(SettingsPaths[settingsType], FileAccess.ModeFlags.Write);
             file.StoreString(settingsText);
+        }
+
+        public void ApplyVideoSettings()
+        {
+            if (VideoSettings.UseFullScreen)
+            {
+                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+            }
+            else
+            {
+                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+            }
         }
     }
 }

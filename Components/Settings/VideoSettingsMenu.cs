@@ -12,9 +12,9 @@ namespace CMSGame
 
             this.GetUniqueNode(ref FullScreenCheckButton, nameof(FullScreenCheckButton));
 
-            FullScreenCheckButton!.SetPressedNoSignal(Settings.UseFullScreen);
+            FullScreenCheckButton!.Toggled += FullScreenCheckButton_Toggled;
 
-            FullScreenCheckButton.Toggled += FullScreenCheckButton_Toggled; ;
+            FullScreenCheckButton.ButtonPressed = Settings.UseFullScreen;
         }
 
         private void FullScreenCheckButton_Toggled(bool buttonPressed)

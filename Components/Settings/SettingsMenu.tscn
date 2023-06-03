@@ -16,7 +16,6 @@ script = ExtResource("1_av57b")
 
 [node name="BattleSettingsMenu" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 script = ExtResource("2_xtjo5")
 
@@ -36,6 +35,7 @@ layout_mode = 2
 
 [node name="VideoSettingsMenu" type="Control" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 script = ExtResource("3_68iki")
 
