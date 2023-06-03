@@ -4,13 +4,13 @@ namespace CMSGame.Models
 {
     internal record class Changelog
     {
-        public DateOnly Date { set; get; }
+        public DateOnly? Date { set; get; }
 
         public string Title { set; get; }
 
         public string Description { set; get; }
 
-        public Changelog(DateOnly date, string title, string description)
+        public Changelog(DateOnly? date, string title, string description)
         {
             Date = date;
             Title = title;
@@ -41,6 +41,18 @@ namespace CMSGame.Models
 
             Changelog? changelog = null;
             StringBuilder contentBuilder = new StringBuilder();
+
+            var commitChangelog = () =>
+            {
+                if (changelog != null)
+                {
+                    changelog.Description = contentBuilder.ToString();
+                    contentBuilder.Clear();
+                    this.Add(changelog);
+                    changelog = null;
+                }
+            };
+
             foreach (var line in fileContent.Split("\n"))
             {
                 if (line.Trim() == "")
@@ -58,7 +70,7 @@ namespace CMSGame.Models
                     if (line.StartsWith("## ")) // 二号标题，格式为 [未发布] 或 [1.0.0] - 2023-06-03
                     {
                         string title = line.TrimStart(new char[] { '#', ' ' });
-                        string[] parts = title.Split('-').Select(str => str.Trim()).ToArray();
+                        string[] parts = title.Split('-', 2).Select(str => str.Trim()).ToArray();
 
                         string versionString = parts[0];
                         string dateString = "";
@@ -67,14 +79,8 @@ namespace CMSGame.Models
                             dateString = parts[1];
                         }
 
-                        if (changelog != null)
-                        {
-                            changelog.Description = contentBuilder.ToString();
-                            contentBuilder.Clear();
-                            this.Add(changelog);
-                        }
-
-                        changelog = new Changelog(DateOnly.Parse(dateString), versionString, "");
+                        commitChangelog();
+                        changelog = new Changelog(dateString != string.Empty ? DateOnly.Parse(dateString) : null, versionString, "");
 
                         continue;
                     }
@@ -82,6 +88,8 @@ namespace CMSGame.Models
 
                 contentBuilder.AppendLine(line.Trim());
             }
+
+            commitChangelog();
         }
     }
 }
