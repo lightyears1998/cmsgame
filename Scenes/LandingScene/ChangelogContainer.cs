@@ -20,7 +20,7 @@ namespace CMSGame
         {
             var changelogText = _changelogList.Select(log =>
             {
-                StringBuilder textBuilder = new StringBuilder();
+                StringBuilder textBuilder = new();
                 textBuilder.Append($"[b]{log.Title}[/b]");
 
                 if (log.Date != null)

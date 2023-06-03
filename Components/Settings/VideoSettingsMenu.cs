@@ -1,3 +1,5 @@
+using CMSGame.Models;
+
 namespace CMSGame
 {
     public partial class VideoSettingsMenu : Control

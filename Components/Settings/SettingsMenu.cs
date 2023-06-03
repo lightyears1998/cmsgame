@@ -1,8 +1,10 @@
+using CMSGame.Autoloads;
+
 namespace CMSGame
 {
     public partial class SettingsMenu : TabContainer
     {
-        private bool _inDevelopment => OS.HasFeature("debug") || OS.HasFeature("editor");
+        private static bool s_inDevelopment => OS.HasFeature("debug") || OS.HasFeature("editor");
 
         public GameSettingsNode? Settings;
 
@@ -23,7 +25,7 @@ namespace CMSGame
             this.GetUniqueNode(ref AudioSettingsMenu, nameof(AudioSettingsMenu));
             this.GetUniqueNode(ref DeveloperOptionsMenu, nameof(DeveloperOptionsMenu));
 
-            DeveloperOptionsMenu!.Visible = _inDevelopment;
+            DeveloperOptionsMenu!.Visible = s_inDevelopment;
         }
     }
 }

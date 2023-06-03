@@ -40,7 +40,7 @@ namespace CMSGame.Models
             if (fileContent == null) return;
 
             Changelog? changelog = null;
-            StringBuilder contentBuilder = new StringBuilder();
+            StringBuilder contentBuilder = new();
 
             var commitChangelog = () =>
             {

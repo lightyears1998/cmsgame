@@ -1,6 +1,7 @@
+using CMSGame.Models;
 using Newtonsoft.Json;
 
-namespace CMSGame
+namespace CMSGame.Autoloads
 {
     /// <summary>
     /// 游戏设置持久化节点
@@ -26,7 +27,6 @@ namespace CMSGame
             RegisterAllSettings();
             MakeDirectories();
             LoadAllSettings();
-            ApplyVideoSettings();
         }
 
         protected void RegisterAllSettings()
@@ -98,18 +98,6 @@ namespace CMSGame
             string settingsText = JsonConvert.SerializeObject(CurrentSettings[settingsType]);
             using var file = FileAccess.Open(SettingsPaths[settingsType], FileAccess.ModeFlags.Write);
             file.StoreString(settingsText);
-        }
-
-        public void ApplyVideoSettings()
-        {
-            if (VideoSettings.UseFullScreen)
-            {
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-            }
-            else
-            {
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-            }
         }
     }
 }
