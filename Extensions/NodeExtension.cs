@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public static class NodeExtension
+    internal static class NodeExtension
     {
         public static T GetAutoloadNode<T>(this Node parent, string autoloadName) where T : Node
         {

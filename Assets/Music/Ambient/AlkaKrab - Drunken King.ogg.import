@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://j05f28wrs7db"
+path="res://.godot/imported/AlkaKrab - Drunken King.ogg-f9821f52b8f04e1a8446ef79d449c4c2.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Music/Ambient/AlkaKrab - Drunken King.ogg"
+dest_files=["res://.godot/imported/AlkaKrab - Drunken King.ogg-f9821f52b8f04e1a8446ef79d449c4c2.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
