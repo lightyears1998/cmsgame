@@ -55,6 +55,39 @@ title = "游戏设置"
 visible = false
 borderless = false
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -338.0
+offset_right = -60.0
+offset_bottom = 374.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_y72s3")
+text = "更新日志"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ChanglogLabel" type="RichTextLabel" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]标题[/b]
+- 更新内容"
+
 [connection signal="pressed" from="StartMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
 [connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
 [connection signal="pressed" from="StartMenu/QuitButton" to="." method="On_QuitButton_Pressed"]
