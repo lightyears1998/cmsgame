@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class DeveloperOptionsMenu : VBoxContainer
+    public partial class DeveloperOptionsMenu : Control
     {
         public override void _Ready()
         {

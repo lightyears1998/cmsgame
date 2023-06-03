@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class AudioSettingsMenu : VBoxContainer
+    public partial class AudioSettingsMenu : Control
     {
         public GameSettingsNode? Settings;
 

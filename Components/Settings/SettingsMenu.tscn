@@ -14,18 +14,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_av57b")
 
-[node name="BattleSettingsMenu" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 2
-script = ExtResource("2_xtjo5")
-
-[node name="VideoSettingsMenu" type="VBoxContainer" parent="."]
+[node name="BattleSettingsMenu" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
+script = ExtResource("2_xtjo5")
+
+[node name="GridContainer" type="GridContainer" parent="BattleSettingsMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="Label" type="Label" parent="BattleSettingsMenu/GridContainer"]
+layout_mode = 2
+text = "跳过非玩家回合"
+
+[node name="SkipNonPlayerTurnCheckButton" type="CheckButton" parent="BattleSettingsMenu/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="VideoSettingsMenu" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
 script = ExtResource("3_68iki")
 
-[node name="AudioSettingsMenu" type="VBoxContainer" parent="."]
+[node name="GridContainer" type="GridContainer" parent="VideoSettingsMenu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="Label" type="Label" parent="VideoSettingsMenu/GridContainer"]
+layout_mode = 2
+text = "全屏"
+
+[node name="FullScreenCheckButton" type="CheckButton" parent="VideoSettingsMenu/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="AudioSettingsMenu" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -69,13 +97,25 @@ max_value = 1.0
 step = 0.01
 value = 0.8
 
-[node name="DeveloperOptionsMenu" type="VBoxContainer" parent="."]
+[node name="DeveloperOptionsMenu" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 script = ExtResource("2_dgytf")
 
-[node name="OpenUserDataDirButton" type="Button" parent="DeveloperOptionsMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="DeveloperOptionsMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.0
+offset_right = 68.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="OpenUserDataDirButton" type="Button" parent="DeveloperOptionsMenu/VBoxContainer"]
 layout_mode = 2
 text = "打开用户数据目录"
 
-[connection signal="pressed" from="DeveloperOptionsMenu/OpenUserDataDirButton" to="DeveloperOptionsMenu" method="On_OpenUserDataDirButton_Pressed"]
+[connection signal="pressed" from="DeveloperOptionsMenu/VBoxContainer/OpenUserDataDirButton" to="DeveloperOptionsMenu" method="On_OpenUserDataDirButton_Pressed"]

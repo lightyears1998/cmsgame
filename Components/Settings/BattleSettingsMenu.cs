@@ -1,10 +1,9 @@
 namespace CMSGame
 {
-	public partial class BattleSettingsMenu : VBoxContainer
-	{
-		public override void _Ready()
-		{
-		}
-	}
+    public partial class BattleSettingsMenu : Control
+    {
+        public override void _Ready()
+        {
+        }
+    }
 }
-

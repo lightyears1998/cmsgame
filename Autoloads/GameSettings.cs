@@ -8,7 +8,9 @@ namespace CMSGame
     { }
 
     public record class VideoSettings : GameSettings
-    { }
+    {
+        public bool UseFullScreen = false;
+    }
 
     public record class AudioSettings : GameSettings
     {
