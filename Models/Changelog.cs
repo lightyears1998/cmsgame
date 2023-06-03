@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace CMSGame.Models
+namespace CMSGame
 {
     internal record class Changelog
     {

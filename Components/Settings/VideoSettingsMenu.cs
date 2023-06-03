@@ -1,5 +1,3 @@
-using CMSGame.Models;
-
 namespace CMSGame
 {
     public partial class VideoSettingsMenu : Control
@@ -16,20 +14,13 @@ namespace CMSGame
 
             FullScreenCheckButton!.Toggled += FullScreenCheckButton_Toggled;
 
-            FullScreenCheckButton.ButtonPressed = Settings.UseFullScreen;
+            FullScreenCheckButton.SetPressedNoSignal(Settings.UseFullScreen);
         }
 
         private void FullScreenCheckButton_Toggled(bool buttonPressed)
         {
             Settings!.UseFullScreen = buttonPressed;
-            if (buttonPressed)
-            {
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-            }
-            else
-            {
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-            }
+            DisplayServerHelper.ApplyResolutionSettings(buttonPressed);
         }
     }
 }

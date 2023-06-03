@@ -1,8 +1,8 @@
-namespace CMSGame.Helpers
+namespace CMSGame
 {
     internal static class DisplayServerHelper
     {
-        public static void ApplyAndPersistResolutionSettings(bool useFullScreen)
+        public static void ApplyResolutionSettings(bool useFullScreen)
         {
             if (useFullScreen)
             {

@@ -1,4 +1,4 @@
-namespace CMSGame.Models
+namespace CMSGame
 {
     public record class GameSettings
     {

@@ -1,7 +1,6 @@
-using CMSGame.Models;
 using Newtonsoft.Json;
 
-namespace CMSGame.Autoloads
+namespace CMSGame
 {
     /// <summary>
     /// 游戏设置持久化节点
@@ -27,6 +26,7 @@ namespace CMSGame.Autoloads
             RegisterAllSettings();
             MakeDirectories();
             LoadAllSettings();
+            ApplyVideoSettings();
         }
 
         protected void RegisterAllSettings()
@@ -62,12 +62,12 @@ namespace CMSGame.Autoloads
             }
         }
 
-        private static void MakeDirectories()
+        protected static void MakeDirectories()
         {
             DirAccess.MakeDirRecursiveAbsolute("user://Settings/");
         }
 
-        private void LoadSettings(Type settingsType)
+        protected void LoadSettings(Type settingsType)
         {
             string settingsText = ReadFileAsString(SettingsPaths[settingsType]);
             var settings = JsonConvert.DeserializeObject(settingsText, settingsType);
@@ -83,7 +83,7 @@ namespace CMSGame.Autoloads
             return (TSettings)CurrentSettings[typeof(TSettings)];
         }
 
-        private static string ReadFileAsString(string path)
+        protected static string ReadFileAsString(string path)
         {
             if (FileAccess.FileExists(path))
             {
@@ -93,11 +93,16 @@ namespace CMSGame.Autoloads
             return "null";
         }
 
-        private void SaveSettings(Type settingsType)
+        protected void SaveSettings(Type settingsType)
         {
             string settingsText = JsonConvert.SerializeObject(CurrentSettings[settingsType]);
             using var file = FileAccess.Open(SettingsPaths[settingsType], FileAccess.ModeFlags.Write);
             file.StoreString(settingsText);
+        }
+
+        protected void ApplyVideoSettings()
+        {
+            DisplayServerHelper.ApplyResolutionSettings(VideoSettings.UseFullScreen);
         }
     }
 }

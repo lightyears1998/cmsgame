@@ -1,5 +1,3 @@
-using CMSGame.Autoloads;
-
 namespace CMSGame
 {
     public partial class SettingsMenu : TabContainer
