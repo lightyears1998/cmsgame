@@ -18,7 +18,7 @@ namespace CMSGame
 
         private void ParseChangelogFile()
         {
-            var file = FileAccess.Open(new GodotPath("res://CHANGELOG.md"), FileAccess.ModeFlags.Read);
+            using var file = FileAccess.Open(new GodotPath("res://CHANGELOG.md"), FileAccess.ModeFlags.Read);
             var fileContent = file.GetAsText();
 
             if (fileContent == null) return;
