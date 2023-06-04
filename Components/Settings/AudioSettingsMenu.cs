@@ -14,27 +14,34 @@ namespace CMSGame
 
         public Button? AudioResetButton;
 
+        public Button? MuteAllButton;
+
         public override void _Ready()
         {
+            // 获取节点
             Settings = this.GetAutoloadNode<GameSettingsNode>(nameof(GameSettingsNode)).AudioSettings;
+            this.GetUniqueNode(ref MasterVolumeSlider, nameof(MasterVolumeSlider));
+            this.GetUniqueNode(ref MusicVolumeSlider, nameof(MusicVolumeSlider));
+            this.GetUniqueNode(ref SoundEffectVolumeSlider, nameof(SoundEffectVolumeSlider));
+            this.GetUniqueNode(ref AudioResetButton, nameof(AudioResetButton));
+            this.GetUniqueNode(ref MuteAllButton, nameof(MuteAllButton));
 
-            MasterVolumeSlider = this.GetUniqueNode<HSlider>(nameof(MasterVolumeSlider));
-            MusicVolumeSlider = this.GetUniqueNode<HSlider>(nameof(MusicVolumeSlider));
-            SoundEffectVolumeSlider = this.GetUniqueNode<HSlider>(nameof(SoundEffectVolumeSlider));
-            AudioResetButton = this.GetUniqueNode<Button>(nameof(AudioResetButton));
+            // 连接信号
+            MasterVolumeSlider!.ValueChanged += MasterVolumeSlider_ValueChanged;
+            MusicVolumeSlider!.ValueChanged += MusicVolumeSlider_ValueChanged;
+            SoundEffectVolumeSlider!.ValueChanged += SoundEffectVolumeSlider_ValueChanged;
+            AudioResetButton!.Pressed += AudioResetButton_Pressed;
 
-            MasterVolumeSlider.ValueChanged += MasterVolumeSlider_ValueChanged;
-            MusicVolumeSlider.ValueChanged += MusicVolumeSlider_ValueChanged;
-            SoundEffectVolumeSlider.ValueChanged += SoundEffectVolumeSlider_ValueChanged;
-            AudioResetButton.Pressed += AudioResetButton_Pressed;
-
-            MasterVolumeSlider.Value = Settings.MusicVolume;
+            // 更新控件
+            MasterVolumeSlider.Value = Settings.MasterVolume;
+            MusicVolumeSlider.Value = Settings.MusicVolume;
+            SoundEffectVolumeSlider.Value = Settings.SoundEffectVolume;
         }
 
         private void MasterVolumeSlider_ValueChanged(double value)
         {
             AudioServerHelper.SetBusVolumeLinear(AudioBusLayout.Master, value);
-            Settings!.MusicVolume = value;
+            Settings!.MasterVolume = value;
         }
 
         private void MusicVolumeSlider_ValueChanged(double value)
@@ -46,14 +53,15 @@ namespace CMSGame
         private void SoundEffectVolumeSlider_ValueChanged(double value)
         {
             AudioServerHelper.SetBusVolumeLinear(AudioBusLayout.SoundEffect, value);
-            Settings!.MusicVolume = value;
+            Settings!.SoundEffectVolume = value;
         }
 
         private void AudioResetButton_Pressed()
         {
-            MasterVolumeSlider!.Value = 0.8;
-            MusicVolumeSlider!.Value = 0.8;
-            SoundEffectVolumeSlider!.Value = 0.8;
+            var defaultAudioSettings = new AudioSettings();
+            MasterVolumeSlider!.Value = defaultAudioSettings.MasterVolume;
+            MusicVolumeSlider!.Value = defaultAudioSettings.MusicVolume;
+            SoundEffectVolumeSlider!.Value = defaultAudioSettings.SoundEffectVolume;
         }
     }
 }

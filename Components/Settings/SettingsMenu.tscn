@@ -97,6 +97,11 @@ max_value = 1.0
 step = 0.01
 value = 0.8
 
+[node name="MuteAllButton" type="Button" parent="AudioSettingsMenu/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "全部静音"
+
 [node name="AudioResetButton" type="Button" parent="AudioSettingsMenu/GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2

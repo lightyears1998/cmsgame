@@ -14,14 +14,16 @@ namespace CMSGame
 
     public record class AudioSettings : GameSettings
     {
+        public double MasterVolume { set; get; } = 0.8;
+
         /// <summary>
         /// 音乐音量
         /// </summary>
-        public double MusicVolume { set; get; } = 80;
+        public double MusicVolume { set; get; } = 0.8;
 
         /// <summary>
         /// 音效音量
         /// </summary>
-        public double SoundEffectVolume { set; get; } = 80;
+        public double SoundEffectVolume { set; get; } = 0.8;
     }
 }
