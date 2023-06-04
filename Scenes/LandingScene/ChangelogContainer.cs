@@ -2,7 +2,7 @@ using System.Text;
 
 namespace CMSGame
 {
-    public partial class ChangelogContainer : VBoxContainer
+    internal partial class ChangelogContainer : VBoxContainer
     {
         private readonly ChangelogList _changelogList = new();
 

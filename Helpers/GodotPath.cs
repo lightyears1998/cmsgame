@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public class GodotPath
+    internal class GodotPath
     {
         private readonly string _path = string.Empty;
 

@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class DeveloperOptionsMenu : Control
+    internal partial class DeveloperOptionsMenu : Control
     {
         public override void _Ready()
         {

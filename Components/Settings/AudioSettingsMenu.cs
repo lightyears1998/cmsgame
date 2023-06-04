@@ -2,7 +2,7 @@ using CMSGame.Helpers;
 
 namespace CMSGame
 {
-    public partial class AudioSettingsMenu : Control
+    internal partial class AudioSettingsMenu : Control
     {
         public AudioSettings? Settings;
 

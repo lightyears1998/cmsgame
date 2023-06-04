@@ -1,7 +1,7 @@
 namespace CMSGame
 {
     [SceneTree]
-    public partial class BattleScene : Node2D
+    internal partial class BattleScene : Node2D
     {
         public AudioStreamPlayer? BackgroundMusicPlayer;
 

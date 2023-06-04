@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class _CLASS_ : _BASE_
+    internal partial class _CLASS_ : _BASE_
     {
         public override void _Ready()
         {

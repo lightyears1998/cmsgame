@@ -7,7 +7,7 @@ namespace CMSGame
     ///
     /// 在游戏开始时载入用户设置，并在游戏关闭时保存用户设置。
     /// </summary>
-    public partial class GameSettingsNode : Node
+    internal partial class GameSettingsNode : Node
     {
         protected Dictionary<Type, GameSettings> CurrentSettings = new();
 

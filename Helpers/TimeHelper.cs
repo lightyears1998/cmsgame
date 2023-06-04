@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    static class TimeHelper
+    internal static class TimeHelper
     {
         /// <summary>
         /// 获取自引擎启动后经过的时间。

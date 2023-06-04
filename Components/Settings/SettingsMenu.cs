@@ -1,7 +1,7 @@
 namespace CMSGame
 {
     [SceneTree]
-    public partial class SettingsMenu : TabContainer
+    internal partial class SettingsMenu : TabContainer
     {
         private static bool InDevelopment => OS.HasFeature("debug") || OS.HasFeature("editor");
 

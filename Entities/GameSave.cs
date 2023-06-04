@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public record class GameSave
+    internal record class GameSave
     {
     }
 }

@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public partial class VideoSettingsMenu : Control
+    internal partial class VideoSettingsMenu : Control
     {
         public VideoSettings? Settings;
 

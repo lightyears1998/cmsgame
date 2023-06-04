@@ -1,6 +1,6 @@
 namespace CMSGame
 {
-    public static class FileHelper
+    internal static class FileHelper
     {
         public static string GodotPathToSystemPath(string godotPath)
         {
