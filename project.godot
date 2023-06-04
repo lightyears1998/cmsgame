@@ -23,9 +23,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+BackgroundMusicPlayer="*res://Autoloads/BackgroundMusicPlayer.tscn"
 SceneLoader="*res://Autoloads/SceneLoader.cs"
 GameSettingsNode="*res://Autoloads/GameSettingsNode.cs"
-BackgroundMusicPlayer="*res://Autoloads/BackgroundMusicPlayer.tscn"
 
 [display]
 

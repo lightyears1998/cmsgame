@@ -3,15 +3,12 @@ namespace CMSGame
     [SceneTree]
     internal partial class BattleScene : Node2D
     {
-        public AudioStreamPlayer? BackgroundMusicPlayer;
+        public BackgroundMusicPlayer BackgroundMusicPlayer = BackgroundMusicPlayer.Current;
 
         public const int TileSize = 64;
 
         public override void _Ready()
         {
-            this.GetAutoloadNode(ref BackgroundMusicPlayer, nameof(BackgroundMusicPlayer));
-            BackgroundMusicPlayer!.Stop();
-
             LimitCamera();
         }
 

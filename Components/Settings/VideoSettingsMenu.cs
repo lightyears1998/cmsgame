@@ -8,12 +8,14 @@ namespace CMSGame
 
         public override void _Ready()
         {
-            Settings = this.GetAutoloadNode<GameSettingsNode>(nameof(GameSettingsNode)).VideoSettings;
-
+            // 获取节点
+            Settings = GameSettingsNode.Current!.VideoSettings;
             this.GetUniqueNode(ref FullScreenCheckButton, nameof(FullScreenCheckButton));
 
+            // 连接信号
             FullScreenCheckButton!.Toggled += FullScreenCheckButton_Toggled;
 
+            // 更新控件
             FullScreenCheckButton.SetPressedNoSignal(Settings.UseFullScreen);
         }
 

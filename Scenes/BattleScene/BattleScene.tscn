@@ -34,7 +34,7 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(131074, 131072, 1)
+layer_1/tile_data = PackedInt32Array()
 
 [node name="Camera2D" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -45,6 +45,9 @@ drag_vertical_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SelectionMarker" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_yopnu")
+position = Vector2(90, 175)
 texture = SubResource("ImageTexture_8cqmo")
+
+[node name="Marker2D" type="Marker2D" parent="SelectionMarker"]

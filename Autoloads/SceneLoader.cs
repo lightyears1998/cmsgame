@@ -1,15 +1,16 @@
-namespace CMSGame.Autoloads
+namespace CMSGame
 {
     internal partial class SceneLoader : Node
     {
-        public AudioStreamPlayer? BackgroundMusicPlayer;
+        public static SceneLoader? Current { get; private set; }
+
+        public override void _EnterTree()
+        {
+            Current = this;
+        }
 
         public override void _Ready()
         {
-            // 获取节点
-            this.GetAutoloadNode(ref BackgroundMusicPlayer, nameof(BackgroundMusicPlayer));
-
-            // 切换初始场景的背景音乐
             SwitchBackgroundMusic();
         }
 
@@ -19,9 +20,10 @@ namespace CMSGame.Autoloads
             var backgroundMusic = scene.Get(LandingScene.PropertyName.BackgroundMusic).As<AudioStream>();
             if (backgroundMusic != null)
             {
-                BackgroundMusicPlayer!.Stop();
-                BackgroundMusicPlayer.Stream = backgroundMusic;
-                BackgroundMusicPlayer.Play();
+                var player = BackgroundMusicPlayer.Current!;
+                player.Stop();
+                player.Stream = backgroundMusic;
+                player.Play();
             }
         }
 

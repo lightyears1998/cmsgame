@@ -9,6 +9,8 @@ namespace CMSGame
     /// </summary>
     internal partial class GameSettingsNode : Node
     {
+        public static GameSettingsNode? Current { get; private set; }
+
         protected Dictionary<Type, GameSettings> CurrentSettings = new();
 
         protected Dictionary<Type, GameSettings> PreviousSettings = new();
@@ -26,6 +28,11 @@ namespace CMSGame
             RegisterAllSettings();
             MakeDirectories();
             LoadAllSettings();
+        }
+
+        public override void _EnterTree()
+        {
+            Current = this;
             ApplyVideoSettings();
         }
 

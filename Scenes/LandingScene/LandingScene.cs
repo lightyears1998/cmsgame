@@ -1,18 +1,12 @@
 namespace CMSGame
 {
     [SceneTree]
-    internal partial class LandingScene : Control
+    internal partial class LandingScene : Control, IBackgroundMusicScene
     {
-        public AudioStreamPlayer? BackgroundMusicPlayer;
+        public BackgroundMusicPlayer BackgroundMusicPlayer = BackgroundMusicPlayer.Current;
 
         [Export]
-        public AudioStream BackgroundMusic = new();
-
-        public override void _Ready()
-        {
-            // 获取节点
-            this.GetAutoloadNode(ref BackgroundMusicPlayer, nameof(BackgroundMusicPlayer));
-        }
+        public AudioStream BackgroundMusic { get; set; } = new();
 
         public void On_StartButton_Pressed()
         {

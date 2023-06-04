@@ -1,10 +1,12 @@
 namespace CMSGame
 {
-	internal partial class BackgroundMusicPlayer : AudioStreamPlayer
-	{
-		public override void _Ready()
-		{
-		}
-	}
-}
+    internal partial class BackgroundMusicPlayer : AudioStreamPlayer
+    {
+        public static BackgroundMusicPlayer? Current { get; private set; }
 
+        public override void _EnterTree()
+        {
+            Current = this;
+        }
+    }
+}

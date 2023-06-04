@@ -19,7 +19,7 @@ namespace CMSGame
         public override void _Ready()
         {
             // 获取节点
-            Settings = this.GetAutoloadNode<GameSettingsNode>(nameof(GameSettingsNode)).AudioSettings;
+            Settings = GameSettingsNode.Current!.AudioSettings;
             this.GetUniqueNode(ref MasterVolumeSlider, nameof(MasterVolumeSlider));
             this.GetUniqueNode(ref MusicVolumeSlider, nameof(MusicVolumeSlider));
             this.GetUniqueNode(ref SoundEffectVolumeSlider, nameof(SoundEffectVolumeSlider));
