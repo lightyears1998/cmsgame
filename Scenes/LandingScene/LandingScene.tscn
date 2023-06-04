@@ -41,14 +41,17 @@ theme = ExtResource("2_js62n")
 theme_override_constants/separation = 16
 
 [node name="StartButton" type="Button" parent="StartMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "开始游戏"
 
 [node name="SettingsButton" type="Button" parent="StartMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "设置"
 
 [node name="QuitButton" type="Button" parent="StartMenu"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "退出"
 
@@ -92,6 +95,6 @@ bbcode_enabled = true
 text = "[b]标题[/b]
 - 更新内容"
 
-[connection signal="pressed" from="StartMenu/StartButton" to="." method="On_BattleDemo1Button_Pressed"]
+[connection signal="pressed" from="StartMenu/StartButton" to="." method="On_StartButton_Pressed"]
 [connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
 [connection signal="pressed" from="StartMenu/QuitButton" to="." method="On_QuitButton_Pressed"]

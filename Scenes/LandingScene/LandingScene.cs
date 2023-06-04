@@ -1,5 +1,6 @@
 namespace CMSGame
 {
+    [SceneTree]
     public partial class LandingScene : Control
     {
         public AudioStreamPlayer? BackgroundMusicPlayer;
@@ -13,6 +14,10 @@ namespace CMSGame
 
             BackgroundMusicPlayer!.Stream = BackgroundMusic;
             BackgroundMusicPlayer!.Play();
+        }
+
+        public void On_StartButton_Pressed()
+        {
         }
 
         public void On_SettingsPopupButton_Pressed()
