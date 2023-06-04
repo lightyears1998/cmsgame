@@ -95,6 +95,12 @@ bbcode_enabled = true
 text = "[b]标题[/b]
 - 更新内容"
 
+[node name="ChangelogToggleButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
 [connection signal="pressed" from="StartMenu/StartButton" to="." method="On_StartButton_Pressed"]
 [connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
 [connection signal="pressed" from="StartMenu/QuitButton" to="." method="On_QuitButton_Pressed"]

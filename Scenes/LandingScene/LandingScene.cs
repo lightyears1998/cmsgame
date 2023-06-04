@@ -12,9 +12,6 @@ namespace CMSGame
         {
             // 获取节点
             this.GetAutoloadNode(ref BackgroundMusicPlayer, nameof(BackgroundMusicPlayer));
-
-            BackgroundMusicPlayer!.Stream = BackgroundMusic;
-            BackgroundMusicPlayer!.Play();
         }
 
         public void On_StartButton_Pressed()
