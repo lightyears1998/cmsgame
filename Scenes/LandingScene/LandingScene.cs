@@ -18,11 +18,12 @@ namespace CMSGame
 
         public void On_StartButton_Pressed()
         {
+            GetTree().ChangeSceneToFile("res://Scenes/BattleScene/BattleScene.tscn");
         }
 
         public void On_SettingsPopupButton_Pressed()
         {
-            GetNode<Popup>("%SettingsMenuPopup").PopupCentered();
+            SettingsMenuPopup.PopupCentered();
         }
 
         public void On_QuitButton_Pressed()
