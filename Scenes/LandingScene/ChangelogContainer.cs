@@ -6,6 +6,8 @@ namespace CMSGame
     {
         private readonly ChangelogList _changelogList = new();
 
+        public string LatestVersion => _changelogList.GetLatestVersion();
+
         public RichTextLabel? ChangelogLabel;
 
         public override void _Ready()
@@ -20,7 +22,7 @@ namespace CMSGame
             var changelogText = _changelogList.Select(log =>
             {
                 StringBuilder textBuilder = new();
-                textBuilder.Append($"[b]{log.Title}[/b]");
+                textBuilder.Append($"[b]{log.Version}[/b]");
 
                 if (log.Date != null)
                 {

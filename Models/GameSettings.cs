@@ -29,4 +29,11 @@ namespace CMSGame
         /// </summary>
         public double SoundEffectVolume { set; get; } = 0.8;
     }
+
+    public record class MiscSettings : GameSettings
+    {
+        public string LastRunVersion { set; get; } = "";
+
+        public bool ShowChangelogAtLandingScene { set; get; } = true;
+    }
 }

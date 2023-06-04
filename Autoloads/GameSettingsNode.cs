@@ -23,6 +23,8 @@ namespace CMSGame
 
         public AudioSettings AudioSettings => GetSettings<AudioSettings>();
 
+        public MiscSettings MiscSettings => GetSettings<MiscSettings>();
+
         public GameSettingsNode()
         {
             RegisterAllSettings();
@@ -41,6 +43,7 @@ namespace CMSGame
             RegisterSettings<BattleSettings>("BattleSettings.json");
             RegisterSettings<VideoSettings>("VideoSettings.json");
             RegisterSettings<AudioSettings>("AudioSettings.json");
+            RegisterSettings<MiscSettings>("MiscSettings.json");
         }
 
         protected void RegisterSettings<TSettings>(string filename) where TSettings : GameSettings, new()

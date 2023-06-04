@@ -16,7 +16,17 @@ namespace CMSGame
             }
         }
 
-        private void ParseChangelogFile()
+        public string GetLatestVersion()
+        {
+            if (this.Count > 0)
+            {
+                return this[0].Version;
+            }
+
+            return "";
+        }
+
+        private void ParseChangelogFile(int maxLogCount = 10)
         {
             using var file = FileAccess.Open(new GodotPath("res://CHANGELOG.md"), FileAccess.ModeFlags.Read);
             var fileContent = file.GetAsText();
@@ -28,7 +38,7 @@ namespace CMSGame
 
             var commitChangelog = () =>
             {
-                if (changelog != null)
+                if (changelog != null && this.Count < maxLogCount)
                 {
                     changelog.Description = contentBuilder.ToString();
                     contentBuilder.Clear();
@@ -64,6 +74,10 @@ namespace CMSGame
                         }
 
                         commitChangelog();
+                        if (this.Count >= maxLogCount)
+                        {
+                            break;
+                        }
                         changelog = new Changelog(dateString != string.Empty ? DateOnly.Parse(dateString) : null, versionString, "");
 
                         continue;

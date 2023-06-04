@@ -4,14 +4,14 @@ namespace CMSGame
     {
         public DateOnly? Date { set; get; }
 
-        public string Title { set; get; }
+        public string Version { set; get; }
 
         public string Description { set; get; }
 
-        public Changelog(DateOnly? date, string title, string description)
+        public Changelog(DateOnly? date, string version, string description)
         {
             Date = date;
-            Title = title;
+            Version = version;
             Description = description;
         }
     }
