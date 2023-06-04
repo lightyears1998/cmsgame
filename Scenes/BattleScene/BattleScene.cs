@@ -3,8 +3,6 @@ namespace CMSGame
     [SceneTree]
     internal partial class BattleScene : Node2D
     {
-        public BackgroundMusicPlayer BackgroundMusicPlayer = BackgroundMusicPlayer.Current;
-
         public const int TileSize = 64;
 
         public override void _Ready()
@@ -26,12 +24,8 @@ namespace CMSGame
         {
             var directionX = Input.GetAxis("move_left", "move_right");
             var directionY = Input.GetAxis("move_up", "move_down");
-
-            var moveDistance = new Vector2I((int)directionX * TileSize, (int)directionY * TileSize);
-            var targetPosition = Camera2D.Position + moveDistance;
-            targetPosition.X = Mathf.Clamp(targetPosition.X, Camera2D.LimitLeft, Camera2D.LimitRight);
-            targetPosition.Y = Mathf.Clamp(targetPosition.Y, Camera2D.LimitTop, Camera2D.LimitBottom);
-            Camera2D.Position = targetPosition;
+            var moveDistance = new Vector2I((int)directionX, (int)directionY);
+            SelectionMarker.TryMove(moveDistance);
         }
     }
 }

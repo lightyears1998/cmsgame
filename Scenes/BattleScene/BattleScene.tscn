@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cp6aa655vykt1"]
+[gd_scene load_steps=6 format=3 uid="uid://cp6aa655vykt1"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene/BattleScene.cs" id="1_n6bn7"]
 [ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/Map/map.png" id="2_kem4h"]
+[ext_resource type="Script" path="res://Scenes/BattleScene/SelectionMarker.cs" id="3_igesh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlk32"]
 texture = ExtResource("2_kem4h")
@@ -15,10 +16,6 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_16cnu"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_vlk32")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yopnu"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_8cqmo"]
 
 [node name="BattleScene" type="Node2D"]
 script = ExtResource("1_n6bn7")
@@ -36,18 +33,117 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="SelectionMarker" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(32, 32)
+texture = ExtResource("2_kem4h")
+region_enabled = true
+region_rect = Rect2(184, 120, 80, 80)
+script = ExtResource("3_igesh")
+
+[node name="Camera2D" type="Camera2D" parent="SelectionMarker"]
 unique_name_in_owner = true
 limit_smoothed = true
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.75
+drag_top_margin = 0.75
+drag_right_margin = 0.75
+drag_bottom_margin = 0.75
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="SelectionMarker" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_yopnu")
-position = Vector2(90, 175)
-texture = SubResource("ImageTexture_8cqmo")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="SelectionMarker"]
+[node name="SelectionHintContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectionHintLabel" type="Label" parent="CanvasLayer/SelectionHintContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "地形 无特殊效果"
+
+[node name="StatusPanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/StatusPanelContainer"]
+layout_mode = 2
+
+[node name="UnitNameLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "角色姓名"
+
+[node name="EquipmentLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "当前装备"
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/StatusPanelContainer/HBoxContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="Label" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "物攻"
+
+[node name="AttackLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label3" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "命中"
+
+[node name="HitLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label5" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "必杀"
+
+[node name="CriticalHitLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label7" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "速度"
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label2" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "回避"
+
+[node name="DodgeLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label11" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "必避"
+
+[node name="DodgeCriticalLabel" type="Label" parent="CanvasLayer/StatusPanelContainer/HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"

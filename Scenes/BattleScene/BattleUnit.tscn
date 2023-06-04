@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvvmna0m12gie"]
+
+[ext_resource type="Texture2D" uid="uid://divkstj8175jn" path="res://icon.svg" id="1_uc416"]
+[ext_resource type="Script" path="res://Scenes/BattleScene/BattleUnit.cs" id="2_0ntwn"]
+
+[node name="BattleUnit" type="Sprite2D"]
+position = Vector2(32, 32)
+texture = ExtResource("1_uc416")
+script = ExtResource("2_0ntwn")
