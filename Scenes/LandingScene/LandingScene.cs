@@ -3,8 +3,6 @@ namespace CMSGame
     [SceneTree]
     internal partial class LandingScene : Control, IBackgroundMusicScene
     {
-        public BackgroundMusicPlayer BackgroundMusicPlayer = BackgroundMusicPlayer.Current;
-
         [Export]
         public AudioStream BackgroundMusic { get; set; } = new();
 
@@ -21,6 +19,11 @@ namespace CMSGame
         public void On_QuitButton_Pressed()
         {
             GetTree().Quit();
+        }
+
+        public void On_ChangelogToggleButton_Pressed()
+        {
+            ChangelogContainer.Visible = !ChangelogContainer.Visible;
         }
     }
 }

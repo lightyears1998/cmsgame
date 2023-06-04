@@ -62,6 +62,7 @@ visible = false
 borderless = false
 
 [node name="ChangelogContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -97,10 +98,25 @@ text = "[b]标题[/b]
 
 [node name="ChangelogToggleButton" type="Button" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -73.0
+offset_bottom = 73.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "展
+开
+更
+新
+日
+志"
 
 [connection signal="pressed" from="StartMenu/StartButton" to="." method="On_StartButton_Pressed"]
 [connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
 [connection signal="pressed" from="StartMenu/QuitButton" to="." method="On_QuitButton_Pressed"]
+[connection signal="pressed" from="ChangelogToggleButton" to="." method="On_ChangelogToggleButton_Pressed"]
