@@ -17,3 +17,6 @@ Temp
 
 # Audio
 *.ogg
+
+# Graphics
+*.png
