@@ -20,12 +20,37 @@ namespace CMSGame
             Camera2D.ResetSmoothing();
         }
 
-        public override void _Process(double delta)
+        public override void _Input(InputEvent @event)
         {
-            var directionX = Input.GetAxis("move_left", "move_right");
-            var directionY = Input.GetAxis("move_up", "move_down");
-            var moveDistance = new Vector2I((int)directionX, (int)directionY);
-            SelectionMarker.TryMove(moveDistance);
+            if (@event is InputEventMouse mouseEvent)
+            {
+                HandleMouseInput(mouseEvent);
+            }
+            else if (@event is InputEventKey keyEvent)
+            {
+                HandleKeyboardInput(keyEvent);
+            }
+        }
+
+        public void HandleMouseInput(InputEventMouse mouseEvent)
+        {
+            var globalPosition = Camera2D.GetScreenCenterPosition() - GetViewport().GetWindow().Size / 2 + mouseEvent.GlobalPosition;
+            var localPositionToTileMap = globalPosition - TileMap.Position;
+            var gridPosition = _.TileMap.LocalToMap(localPositionToTileMap);
+            SelectionMarker.TryMoveTo(gridPosition);
+        }
+
+        public void HandleKeyboardInput(InputEventKey keyEvent)
+        {
+            foreach (var kv in InputAction.MoveDirections)
+            {
+                var action = kv.Key;
+                var direction = kv.Value;
+                if (keyEvent.IsAction(action) && keyEvent.Pressed)
+                {
+                    SelectionMarker.TryMove(direction);
+                }
+            }
         }
     }
 }

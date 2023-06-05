@@ -7,5 +7,10 @@ namespace CMSGame
         {
             GridPosition += moveDistance;
         }
+
+        public void TryMoveTo(Vector2I targetPosition)
+        {
+            GridPosition = targetPosition;
+        }
     }
 }
