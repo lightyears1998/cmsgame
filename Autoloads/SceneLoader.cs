@@ -1,3 +1,5 @@
+using CommunityToolkit.Diagnostics;
+
 namespace CMSGame
 {
     internal partial class SceneLoader : Node
@@ -6,6 +8,7 @@ namespace CMSGame
 
         public override void _EnterTree()
         {
+            Guard.IsNull(Current); // 单例
             Current = this;
         }
 

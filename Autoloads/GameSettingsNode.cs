@@ -1,3 +1,4 @@
+using CommunityToolkit.Diagnostics;
 using Newtonsoft.Json;
 
 namespace CMSGame
@@ -34,6 +35,7 @@ namespace CMSGame
 
         public override void _EnterTree()
         {
+            Guard.IsNull(Current); // 单例
             Current = this;
             ApplyVideoSettings();
         }
@@ -83,8 +85,8 @@ namespace CMSGame
             var settings = JsonConvert.DeserializeObject(settingsText, settingsType);
             if (settings != null)
             {
-                PreviousSettings[settingsType] = (GameSettings)settings;
-                CurrentSettings[settingsType] = (GameSettings)settings with { };
+                PreviousSettings[settingsType] = (GameSettings)settings with { };
+                CurrentSettings[settingsType] = (GameSettings)settings;
             }
         }
 
@@ -108,6 +110,7 @@ namespace CMSGame
             string settingsText = JsonConvert.SerializeObject(CurrentSettings[settingsType]);
             using var file = FileAccess.Open(SettingsPaths[settingsType], FileAccess.ModeFlags.Write);
             file.StoreString(settingsText);
+            PreviousSettings[settingsType] = CurrentSettings[settingsType] with { };
         }
 
         protected void ApplyVideoSettings()

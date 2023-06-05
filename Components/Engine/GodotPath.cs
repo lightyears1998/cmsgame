@@ -6,13 +6,10 @@ namespace CMSGame
 
         public GodotPath(string godotPath)
         {
-            if (godotPath.StartsWith("user://"))
+            _path = godotPath;
+            if (_path.StartsWith("user://"))
             {
-                _path = ProjectSettings.GlobalizePath(godotPath);
-            }
-            else
-            {
-                _path = godotPath;
+                _path = ProjectSettings.GlobalizePath(_path);
             }
         }
 
