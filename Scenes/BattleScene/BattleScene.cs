@@ -40,7 +40,7 @@ namespace CMSGame
                         Camera2D.DragVerticalEnabled = false;
                         break;
 
-                    case CameraMode.AutoMode:
+                    case CameraMode.TrackMode:
                         Camera2D.DragHorizontalEnabled = true;
                         Camera2D.DragVerticalEnabled = true;
                         break;
@@ -62,7 +62,7 @@ namespace CMSGame
             }
             else if (@event is InputEventKey keyEvent)
             {
-                UseCameraMode(CameraMode.AutoMode);
+                UseCameraMode(CameraMode.TrackMode);
                 HandleKeyboardInput(keyEvent);
             }
         }
@@ -119,7 +119,7 @@ namespace CMSGame
         internal enum CameraMode
         {
             FreeMode,
-            AutoMode
+            TrackMode
         }
     }
 }
