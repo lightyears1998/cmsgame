@@ -5,9 +5,20 @@ namespace CMSGame
     {
         public const int TileSize = 64;
 
-        private CameraMode _cameraMode = CameraMode.FreeMode;
+        private CameraMode? _cameraMode;
 
         private Rect2 _cameraArea = new();
+
+        private Rect2 SafeCameraFocusArea
+        {
+            get
+            {
+                var windowSize = GetViewport().GetWindow().Size;
+                var width = windowSize.X / 2;
+                var height = windowSize.Y / 2;
+                return _cameraArea.GrowIndividual(-width / 2, -height / 2, -width / 2, -height / 2);
+            }
+        }
 
         public override void _Ready()
         {
@@ -38,6 +49,12 @@ namespace CMSGame
                     case CameraMode.FreeMode:
                         Camera2D.DragHorizontalEnabled = false;
                         Camera2D.DragVerticalEnabled = false;
+                        if (!SafeCameraFocusArea.HasPoint(CameraFocus.Position))
+                        {
+                            var x = Mathf.Clamp(CameraFocus.Position.X, SafeCameraFocusArea.Position.X, SafeCameraFocusArea.End.X);
+                            var y = Mathf.Clamp(CameraFocus.Position.Y, SafeCameraFocusArea.Position.Y, SafeCameraFocusArea.End.Y);
+                            CameraFocus.Position = new Vector2(x, y);
+                        }
                         break;
 
                     case CameraMode.TrackMode:
@@ -57,18 +74,18 @@ namespace CMSGame
         {
             if (@event is InputEventMouse mouseEvent)
             {
-                UseCameraMode(CameraMode.FreeMode);
                 HandleMouseInput(mouseEvent);
             }
             else if (@event is InputEventKey keyEvent)
             {
-                UseCameraMode(CameraMode.TrackMode);
                 HandleKeyboardInput(keyEvent);
             }
         }
 
         public void HandleMouseInput(InputEventMouse mouseEvent)
         {
+            bool isValidInput = false;
+
             // 左键单击
             if ((mouseEvent.ButtonMask & MouseButtonMask.Left) != 0)
             {
@@ -76,6 +93,7 @@ namespace CMSGame
                 var localPositionToTileMap = globalPosition - BattleTileMap.Position;
                 var gridPosition = BattleTileMap.LocalToMap(localPositionToTileMap);
                 SelectionMarker.TryMoveTo(gridPosition);
+                isValidInput = true;
             }
 
             // 中键拖拽
@@ -85,12 +103,16 @@ namespace CMSGame
                 {
                     var dragDistance = mouseEvent.Position - InputAction.LastMiddleMouseDragEvent!.Position;
                     var newPosition = CameraFocus.Position - dragDistance;
-                    if (_cameraArea.HasPoint(newPosition))
+                    if (!SafeCameraFocusArea.HasPoint(newPosition))
                     {
-                        CameraFocus.Position = newPosition;
+                        var x = Mathf.Clamp(newPosition.X, SafeCameraFocusArea.Position.X, SafeCameraFocusArea.End.X);
+                        var y = Mathf.Clamp(newPosition.Y, SafeCameraFocusArea.Position.Y, SafeCameraFocusArea.End.Y);
+                        newPosition = new Vector2(x, y);
                     }
+                    CameraFocus.Position = newPosition;
                 }
                 InputAction.LastMiddleMouseDragEvent = mouseEvent;
+                isValidInput = true;
             }
             else
             {
@@ -99,10 +121,17 @@ namespace CMSGame
                     InputAction.LastMiddleMouseDragEvent = null;
                 }
             }
+
+            if (isValidInput)
+            {
+                UseCameraMode(CameraMode.FreeMode);
+            }
         }
 
         public void HandleKeyboardInput(InputEventKey keyEvent)
         {
+            bool isValidInput = false;
+
             // 是否为方向输入
             foreach (var kv in InputAction.MoveDirections)
             {
@@ -112,7 +141,13 @@ namespace CMSGame
                 {
                     SelectionMarker.TryMove(direction);
                     CameraFocus.Position = SelectionMarker.Position;
+                    isValidInput = true;
                 }
+            }
+
+            if (isValidInput)
+            {
+                UseCameraMode(CameraMode.TrackMode);
             }
         }
 
