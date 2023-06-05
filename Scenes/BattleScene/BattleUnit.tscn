@@ -1,9 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvvmna0m12gie"]
+[gd_scene load_steps=5 format=3 uid="uid://bvvmna0m12gie"]
 
-[ext_resource type="Texture2D" uid="uid://divkstj8175jn" path="res://icon.svg" id="1_uc416"]
+[ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/Map/map.png" id="1_igptt"]
 [ext_resource type="Script" path="res://Scenes/BattleScene/BattleUnit.cs" id="2_0ntwn"]
 
+[sub_resource type="Shader" id="Shader_u6vqg"]
+code = "shader_type canvas_item;
+
+uniform float health_ratio;
+uniform vec4 unit_color : source_color;
+uniform vec4 template_frame_color : source_color = vec4(0.25, 0.25, 0.25, 1);
+uniform vec4 template_inner_color : source_color = vec4(0.5, 0.5, 0.5, 1) ;
+
+const vec4 EMPTY_COLOR = vec4(1, 1, 1, 0.8);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	
+	if (COLOR == template_inner_color) {
+		COLOR = unit_color;
+	} else if (COLOR == template_frame_color) {
+		COLOR = unit_color;
+		COLOR.rgb = COLOR.rgb / 1.5;
+	} 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2jw3"]
+shader = SubResource("Shader_u6vqg")
+shader_parameter/health_ratio = null
+shader_parameter/unit_color = Color(0.407843, 0.580392, 1, 1)
+shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
+
 [node name="BattleUnit" type="Sprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_a2jw3")
 position = Vector2(32, 32)
-texture = ExtResource("1_uc416")
+texture = ExtResource("1_igptt")
+region_enabled = true
+region_rect = Rect2(256, 0, 64, 64)
 script = ExtResource("2_0ntwn")
