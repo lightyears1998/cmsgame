@@ -96,7 +96,7 @@ namespace CMSGame
                 var direction = kv.Value;
                 if (keyEvent.IsAction(action) && keyEvent.Pressed)
                 {
-                    TryMoveSelectionMarkerTo(direction);
+                    TryMoveSelectionMarkerTo(SelectionMarker.GridPosition + direction);
                     BattleCamera.FocusOn(SelectionMarker.Position);
                     isValidInput = true;
                 }

@@ -11,6 +11,10 @@ unique_name_in_owner = true
 
 [node name="Camera2D" type="Camera2D" parent="CameraFocus"]
 unique_name_in_owner = true
+limit_left = 0
+limit_top = 0
+limit_right = 0
+limit_bottom = 0
 position_smoothing_speed = 8.0
 drag_left_margin = 0.75
 drag_top_margin = 0.75
