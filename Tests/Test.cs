@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Xunit;
 
 namespace CMSGame.Tests
