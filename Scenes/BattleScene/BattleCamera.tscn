@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwsc8xrdgribp"]
+
+[ext_resource type="Script" path="res://Scenes/BattleScene/BattleCamera.cs" id="1_j6lui"]
+
+[node name="BattleCamera" type="Node2D"]
+script = ExtResource("1_j6lui")
+SafeCameraArea = Rect2(0, 0, 0, 0)
+
+[node name="CameraFocus" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Camera2D" type="Camera2D" parent="CameraFocus"]
+unique_name_in_owner = true
+position_smoothing_speed = 8.0
+drag_left_margin = 0.75
+drag_top_margin = 0.75
+drag_right_margin = 0.75
+drag_bottom_margin = 0.75
+editor_draw_limits = true
+editor_draw_drag_margin = true

@@ -3,29 +3,14 @@ namespace CMSGame
     [Tool]
     internal partial class SelectionMarker : GridSprite2D
     {
-        public BattleTileMap? tileMap;
-
-        public override void _EnterTree()
+        public void MoveDistance(Vector2I gridDistance)
         {
-            tileMap = GetParent<BattleScene>().BattleTileMap;
+            MoveTo(GridPosition + gridDistance);
         }
 
-        public override void _ExitTree()
+        public void MoveTo(Vector2I gridPosition)
         {
-            tileMap = null;
-        }
-
-        public void TryMove(Vector2I gridDistance)
-        {
-            TryMoveTo(GridPosition + gridDistance);
-        }
-
-        public void TryMoveTo(Vector2I gridPosition)
-        {
-            var tileData = tileMap!.GetCellTileData(0, gridPosition);
-            var isBoundary = tileData.GetCustomData("is_boundary").As<bool>();
-            if (!isBoundary)
-                GridPosition = gridPosition;
+            GridPosition = gridPosition;
         }
     }
 }

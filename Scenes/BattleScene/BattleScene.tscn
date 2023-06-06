@@ -1,9 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cp6aa655vykt1"]
+[gd_scene load_steps=13 format=3 uid="uid://cp6aa655vykt1"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene/BattleScene.cs" id="1_n6bn7"]
 [ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/Map/map.png" id="2_kem4h"]
 [ext_resource type="Script" path="res://Scenes/BattleScene/SelectionMarker.cs" id="3_igesh"]
 [ext_resource type="Script" path="res://Scenes/BattleScene/BattleTileMap.cs" id="3_uho8w"]
+[ext_resource type="PackedScene" uid="uid://cwsc8xrdgribp" path="res://Scenes/BattleScene/BattleCamera.tscn" id="4_emqn8"]
+[ext_resource type="PackedScene" uid="uid://dfda0qwu8bnlf" path="res://Scenes/BattleScene/PauseMenu.tscn" id="5_7nefo"]
+[ext_resource type="Script" path="res://Scenes/BattleScene/PauseMenu.cs" id="6_8r7ng"]
+[ext_resource type="PackedScene" uid="uid://bvvmna0m12gie" path="res://Scenes/BattleScene/BattleUnitSprite.tscn" id="7_sw714"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlk32"]
 texture = ExtResource("2_kem4h")
@@ -57,21 +61,8 @@ layer_1/tile_data = PackedInt32Array()
 script = ExtResource("3_uho8w")
 metadata/_edit_lock_ = true
 
-[node name="CameraFocus" type="Marker2D" parent="."]
+[node name="BattleCamera" parent="." instance=ExtResource("4_emqn8")]
 unique_name_in_owner = true
-
-[node name="Camera2D" type="Camera2D" parent="CameraFocus"]
-unique_name_in_owner = true
-limit_smoothed = true
-position_smoothing_speed = 8.0
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
-drag_left_margin = 0.75
-drag_top_margin = 0.75
-drag_right_margin = 0.75
-drag_bottom_margin = 0.75
-editor_draw_limits = true
-editor_draw_drag_margin = true
 
 [node name="SelectionMarker" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -106,6 +97,7 @@ offset_top = -40.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_lock_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/StatusPanelContainer"]
 layout_mode = 2
@@ -178,30 +170,48 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "--"
 
-[node name="Fight" type="CanvasLayer" parent="."]
-visible = false
+[node name="BattleUnitActionPopup" type="PanelContainer" parent="HUD"]
+unique_name_in_owner = true
 
-[node name="PanelContainer" type="PanelContainer" parent="Fight"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/BattleUnitActionPopup"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HUD/BattleUnitActionPopup/VBoxContainer"]
+layout_mode = 2
+text = "待命的"
+
+[node name="PauseMenu" parent="HUD" instance=ExtResource("5_7nefo")]
+unique_name_in_owner = true
+script = ExtResource("6_8r7ng")
+
+[node name="FightResultContainer" type="PanelContainer" parent="HUD"]
+unique_name_in_owner = true
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -24.0
-offset_top = -20.0
+offset_top = -27.5
 offset_right = 24.0
-offset_bottom = 20.0
+offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="Fight/PanelContainer"]
+[node name="GridContainer" type="GridContainer" parent="HUD/FightResultContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="Fight/PanelContainer/GridContainer"]
+[node name="Label" type="Label" parent="HUD/FightResultContainer/GridContainer"]
 layout_mode = 2
 text = "进攻方"
 
-[node name="Label2" type="Label" parent="Fight/PanelContainer/GridContainer"]
+[node name="Label2" type="Label" parent="HUD/FightResultContainer/GridContainer"]
 layout_mode = 2
 text = "防御方"
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="PlayerUnit1" parent="Units" instance=ExtResource("7_sw714")]
+position = Vector2(96, 160)
+GridPosition = Vector2i(1, 2)
