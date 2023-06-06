@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvvmna0m12gie"]
 
-[ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/Map/map.png" id="1_igptt"]
-[ext_resource type="Script" path="res://Scenes/BattleScene/BattleUnit.cs" id="2_0ntwn"]
+[ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/Map/map.png" id="1_bj7y4"]
+[ext_resource type="Script" path="res://Scenes/BattleScene/BattleUnitSprite.cs" id="2_6nlwf"]
 
 [sub_resource type="Shader" id="Shader_u6vqg"]
 code = "shader_type canvas_item;
@@ -31,11 +31,11 @@ shader_parameter/unit_color = Color(0.407843, 0.580392, 1, 1)
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[node name="BattleUnit" type="Sprite2D"]
+[node name="BattleUnitSprite" type="Sprite2D"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_a2jw3")
 position = Vector2(32, 32)
-texture = ExtResource("1_igptt")
+texture = ExtResource("1_bj7y4")
 region_enabled = true
 region_rect = Rect2(256, 0, 64, 64)
-script = ExtResource("2_0ntwn")
+script = ExtResource("2_6nlwf")

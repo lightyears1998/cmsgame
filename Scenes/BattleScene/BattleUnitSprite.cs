@@ -1,7 +1,7 @@
 namespace CMSGame
 {
     [Tool]
-    internal partial class BattleUnit : GridSprite2D
+    internal partial class BattleUnitSprite : GridSprite2D
     {
         public override void _Ready()
         {
