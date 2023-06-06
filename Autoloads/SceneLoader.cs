@@ -20,11 +20,11 @@ namespace CMSGame
         public void SwitchBackgroundMusic()
         {
             var scene = GetTree().CurrentScene;
-            var backgroundMusic = scene.Get(LandingScene.PropertyName.BackgroundMusic).As<AudioStream>();
+            var backgroundMusic = scene.Get(nameof(IBackgroundMusicScene.BackgroundMusic)).As<AudioStream>();
+            var player = BackgroundMusicPlayer.Current!;
+            player.Stop();
             if (backgroundMusic != null)
             {
-                var player = BackgroundMusicPlayer.Current!;
-                player.Stop();
                 player.Stream = backgroundMusic;
                 player.Play();
             }
@@ -33,17 +33,18 @@ namespace CMSGame
         public void ChangeSceneToFile(string path)
         {
             GetTree().ChangeSceneToFile(path);
-            DoPostSceneChangedAction();
+            AwaitSceneChangedAndDoPostAction();
         }
 
         public void ChangeSceneToPacked(PackedScene scene)
         {
             GetTree().ChangeSceneToPacked(scene);
-            DoPostSceneChangedAction();
+            AwaitSceneChangedAndDoPostAction();
         }
 
-        private void DoPostSceneChangedAction()
+        private async void AwaitSceneChangedAndDoPostAction()
         {
+            await ToSignal(GetTree().CreateTimer(0), SceneTreeTimer.SignalName.Timeout);
             SwitchBackgroundMusic();
         }
     }
