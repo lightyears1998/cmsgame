@@ -19,12 +19,12 @@ namespace CMSGame
         private void SetCamera()
         {
             var used = BattleTileMap.GetUsedRect().Grow(-1);
-            Rect2 cameraArea = new()
+            Rect2I cameraArea = new()
             {
                 Position = used.Position * TileSize,
                 End = used.End * TileSize
             };
-            BattleCamera.SafeCameraArea = cameraArea;
+            BattleCamera.Limit = cameraArea;
             BattleCamera.DragEnabled = true;
         }
 
@@ -57,8 +57,8 @@ namespace CMSGame
                 if (InputActions.IsMiddleMouseDragging)
                 {
                     var dragDistance = mouseEvent.Position - InputActions.LastMiddleMouseDragEvent!.Position;
-                    var newPosition = BattleCamera.FocusPosition - dragDistance;
-                    BattleCamera.FocusOn(newPosition);
+                    var newPosition = BattleCamera.Position - dragDistance;
+                    BattleCamera.PositionOn(newPosition);
                 }
                 InputActions.LastMiddleMouseDragEvent = mouseEvent;
             }
@@ -87,7 +87,7 @@ namespace CMSGame
                 if (keyEvent.IsAction(action) && keyEvent.Pressed)
                 {
                     TryMoveSelectionMarkerTo(SelectionMarker.GridPosition + direction);
-                    BattleCamera.FocusOn(SelectionMarker.Position);
+                    BattleCamera.PositionOn(SelectionMarker.Position);
                 }
             }
         }

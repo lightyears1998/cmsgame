@@ -2,36 +2,22 @@ namespace CMSGame
 {
     [Tool]
     [SceneTree]
-    internal partial class BattleCamera : Node2D
+    internal partial class BattleCamera : Camera2D
     {
         [Export]
         public bool Debug { set; get; } = false;
 
-        private Rect2 _safeCameraArea = new Rect2(-10000, -10000, 20000, 20000);
-
         [Export]
-        public Rect2 SafeCameraArea
+        public Rect2I Limit
         {
-            get => _safeCameraArea; set
-            {
-                _safeCameraArea = value;
-                if (Camera2D != null)
-                    SetupCamera2D();
-            }
-        }
-
-        private Vector2 _focusPosition = Vector2.Zero;
-
-        [Export]
-        public Vector2 FocusPosition
-        {
-            get => _focusPosition;
             set
             {
-                _focusPosition = value;
-                if (CameraFocus != null)
-                    CameraFocus.Position = value;
+                LimitLeft = value.Position.X;
+                LimitTop = value.Position.Y;
+                LimitRight = value.End.X;
+                LimitBottom = value.End.Y;
             }
+            get => new(LimitLeft, LimitTop, LimitRight - LimitLeft, LimitBottom - LimitTop);
         }
 
         private bool _dragEnabled = false;
@@ -42,81 +28,72 @@ namespace CMSGame
             get => _dragEnabled;
             set
             {
-                _dragEnabled = value;
-                if (Camera2D != null)
-                    Camera2D.DragHorizontalEnabled = Camera2D.DragVerticalEnabled = value;
+                _dragEnabled = this.DragHorizontalEnabled = this.DragVerticalEnabled = value;
             }
         }
 
-        public Rect2 SafeCameraFocusArea
+        public Rect2 NoDragPositionSafeArea
         {
             get
             {
                 var windowSize = DisplayServer.WindowGetSize();
                 var width = windowSize.X;
                 var height = windowSize.Y;
-                return SafeCameraArea.GrowIndividual(-width / 2, -height / 2, -width / 2, -height / 2);
+                return Limit.GrowIndividual(-width / 2, -height / 2, -width / 2, -height / 2);
             }
         }
 
         public override void _Ready()
         {
-            SetupCamera2D();
-        }
-
-        protected void SetupCamera2D()
-        {
-            Camera2D.LimitLeft = (int)SafeCameraArea.Position.X;
-            Camera2D.LimitTop = (int)SafeCameraArea.Position.Y;
-            Camera2D.LimitRight = (int)SafeCameraArea.End.X;
-            Camera2D.LimitBottom = (int)SafeCameraArea.End.Y;
-            Camera2D.DragHorizontalEnabled = Camera2D.DragVerticalEnabled = DragEnabled;
-
-            FocusOn(FocusPosition);
-            Camera2D.ResetSmoothing();
+            DragEnabled = false;
         }
 
         public override void _Draw()
         {
             if (Debug)
             {
+                DrawSetTransform(-GlobalPosition);
+
                 var viewportTransform = GetViewportTransform();
                 var topLeftCoordinate = new Vector2(-viewportTransform.Origin.X, -viewportTransform.Origin.Y);
                 DrawCircle(topLeftCoordinate, 64, Colors.Green);
-                DrawCircle(CameraFocus.Position, 32, Colors.Red);
-                DrawRect(SafeCameraFocusArea, Colors.PowderBlue);
+                DrawCircle(Position, 32, Colors.Red);
+                DrawRect(NoDragPositionSafeArea, Colors.PowderBlue);
+
+                Console.WriteLine("Camera Position: {0}", Position);
+                Console.WriteLine("Camera GlobalPosition: {0}", GlobalPosition);
             }
         }
 
-        public void FocusOn(Vector2 position)
+        public void PositionOn(Vector2 position)
         {
-            position = ClampFocusPosition(position);
-            FocusPosition = position;
-            QueueRedraw();
+            //Position = ClampPosition(position);
+            Position = position;
         }
 
-        protected Vector2 ClampFocusPosition(Vector2 position)
+        public override void _Process(double delta)
         {
-            var span = SafeCameraFocusArea.End - SafeCameraFocusArea.Position;
+            if (Debug)
+                QueueRedraw();
+        }
+
+        protected Vector2 ClampPosition(Vector2 position)
+        {
+            var span = NoDragPositionSafeArea.End - NoDragPositionSafeArea.Position;
             if (span.X < 0 || span.Y < 0)
             {
                 return position; // SafeCameraFocusArea 不是合法的矩形，返回默认值。
             }
 
-            if (!SafeCameraFocusArea.HasPoint(position))
+            if (!NoDragPositionSafeArea.HasPoint(position))
             {
-                // 将相机中心焦点位置钳制在 SafeCameraFocusArea 内。
-                var x = Mathf.Clamp(position.X, SafeCameraFocusArea.Position.X, SafeCameraFocusArea.End.X);
-                var y = Mathf.Clamp(position.Y, SafeCameraFocusArea.Position.Y, SafeCameraFocusArea.End.Y);
+                // 将相机中心位置钳制在 NoDragPositionSafeArea 内。
+                var x = Mathf.Clamp(position.X, NoDragPositionSafeArea.Position.X, NoDragPositionSafeArea.End.X);
+                var y = Mathf.Clamp(position.Y, NoDragPositionSafeArea.Position.Y, NoDragPositionSafeArea.End.Y);
                 position = new Vector2(x, y);
             }
 
             return position;
-        }
-
-        public Vector2 GetScreenCenterPosition()
-        {
-            return Camera2D.GetScreenCenterPosition();
         }
     }
 }

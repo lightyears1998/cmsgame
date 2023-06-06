@@ -2,19 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/BattleScene/BattleCamera.cs" id="1_j6lui"]
 
-[node name="BattleCamera" type="Node2D"]
-script = ExtResource("1_j6lui")
-SafeCameraArea = Rect2(0, 0, 0, 0)
-
-[node name="CameraFocus" type="Marker2D" parent="."]
-unique_name_in_owner = true
-
-[node name="Camera2D" type="Camera2D" parent="CameraFocus"]
-unique_name_in_owner = true
-limit_left = 0
-limit_top = 0
-limit_right = 0
-limit_bottom = 0
+[node name="BattleCamera" type="Camera2D"]
 position_smoothing_speed = 8.0
 drag_left_margin = 0.6
 drag_top_margin = 0.6
@@ -22,3 +10,5 @@ drag_right_margin = 0.6
 drag_bottom_margin = 0.6
 editor_draw_limits = true
 editor_draw_drag_margin = true
+script = ExtResource("1_j6lui")
+Limit = Rect2i(-10000000, -10000000, 20000000, 20000000)
