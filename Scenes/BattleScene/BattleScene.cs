@@ -25,7 +25,7 @@ namespace CMSGame
                 End = used.End * TileSize
             };
             BattleCamera.SafeCameraArea = cameraArea;
-            BattleCamera.DragEnabled = false;
+            BattleCamera.DragEnabled = true;
         }
 
         public override void _Input(InputEvent @event)

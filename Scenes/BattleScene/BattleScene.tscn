@@ -63,6 +63,7 @@ metadata/_edit_lock_ = true
 
 [node name="BattleCamera" parent="." instance=ExtResource("4_emqn8")]
 unique_name_in_owner = true
+Debug = true
 
 [node name="SelectionMarker" type="Sprite2D" parent="."]
 unique_name_in_owner = true

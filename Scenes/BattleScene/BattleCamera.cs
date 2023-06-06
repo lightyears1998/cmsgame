@@ -1,11 +1,12 @@
-using Newtonsoft.Json.Linq;
-
 namespace CMSGame
 {
     [Tool]
     [SceneTree]
     internal partial class BattleCamera : Node2D
     {
+        [Export]
+        public bool Debug { set; get; } = false;
+
         private Rect2 _safeCameraArea = new Rect2(-10000, -10000, 20000, 20000);
 
         [Export]
@@ -52,8 +53,8 @@ namespace CMSGame
             get
             {
                 var windowSize = DisplayServer.WindowGetSize();
-                var width = windowSize.X / 2;
-                var height = windowSize.Y / 2;
+                var width = windowSize.X;
+                var height = windowSize.Y;
                 return SafeCameraArea.GrowIndividual(-width / 2, -height / 2, -width / 2, -height / 2);
             }
         }
@@ -75,10 +76,23 @@ namespace CMSGame
             Camera2D.ResetSmoothing();
         }
 
+        public override void _Draw()
+        {
+            if (Debug)
+            {
+                var viewportTransform = GetViewportTransform();
+                var topLeftCoordinate = new Vector2(-viewportTransform.Origin.X, -viewportTransform.Origin.Y);
+                DrawCircle(topLeftCoordinate, 64, Colors.Green);
+                DrawCircle(CameraFocus.Position, 32, Colors.Red);
+                DrawRect(SafeCameraFocusArea, Colors.PowderBlue);
+            }
+        }
+
         public void FocusOn(Vector2 position)
         {
             position = ClampFocusPosition(position);
             FocusPosition = position;
+            QueueRedraw();
         }
 
         protected Vector2 ClampFocusPosition(Vector2 position)
@@ -91,6 +105,7 @@ namespace CMSGame
 
             if (!SafeCameraFocusArea.HasPoint(position))
             {
+                // 将相机中心焦点位置钳制在 SafeCameraFocusArea 内。
                 var x = Mathf.Clamp(position.X, SafeCameraFocusArea.Position.X, SafeCameraFocusArea.End.X);
                 var y = Mathf.Clamp(position.Y, SafeCameraFocusArea.Position.Y, SafeCameraFocusArea.End.Y);
                 position = new Vector2(x, y);
