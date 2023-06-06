@@ -6,7 +6,7 @@ namespace CMSGame
     {
         public static SceneLoader? Current { get; private set; }
 
-        public override void _EnterTree()
+        public SceneLoader()
         {
             Guard.IsNull(Current); // 单例
             Current = this;

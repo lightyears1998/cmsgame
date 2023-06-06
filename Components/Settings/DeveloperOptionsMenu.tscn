@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://b06chrsydglke"]
+
+[ext_resource type="Script" path="res://Components/Settings/DeveloperOptionsMenu.cs" id="1_g1kv2"]
+
+[node name="DeveloperOptionsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_g1kv2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -68.0
+offset_right = 68.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="OpenUserDataDirButton" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "打开用户数据目录"
+
+[connection signal="pressed" from="VBoxContainer/OpenUserDataDirButton" to="." method="On_OpenUserDataDirButton_Pressed"]

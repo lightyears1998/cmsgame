@@ -6,7 +6,7 @@ namespace CMSGame
     {
         public static BackgroundMusicPlayer? Current { get; private set; }
 
-        public override void _EnterTree()
+        public BackgroundMusicPlayer()
         {
             Guard.IsNull(Current); // 单例
             Current = this;

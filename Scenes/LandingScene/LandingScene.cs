@@ -36,9 +36,9 @@ namespace CMSGame
             ChangelogContainer.Visible = showShowChangeLog;
         }
 
-        public void On_StartButton_Pressed()
+        public static void On_StartButton_Pressed()
         {
-            GetTree().ChangeSceneToFile("res://Scenes/BattleScene/BattleScene.tscn");
+            SceneLoader.Current!.ChangeSceneToFile("res://Scenes/BattleScene/BattleScene.tscn");
         }
 
         public void On_SettingsPopupButton_Pressed()

@@ -3,9 +3,9 @@ namespace CMSGame
     internal static class TimeHelper
     {
         /// <summary>
-        /// 获取自引擎启动后经过的时间。
+        /// 获取自引擎启动后经过的时间（单位：秒）。
         /// </summary>
-        public static double GetTicks()
+        public static double GetSecondsSinceStarted()
         {
             return Time.GetTicksMsec() / 1000.0;
         }

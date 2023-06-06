@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://blk2uswpo2a7k"]
 
 [ext_resource type="Script" path="res://Components/Settings/SettingsMenu.cs" id="1_av57b"]
-[ext_resource type="Script" path="res://Components/Settings/DeveloperOptionsMenu.cs" id="2_dgytf"]
-[ext_resource type="Script" path="res://Components/Settings/BattleSettingsMenu.cs" id="2_xtjo5"]
-[ext_resource type="Script" path="res://Components/Settings/VideoSettingsMenu.cs" id="3_68iki"]
-[ext_resource type="Script" path="res://Components/Settings/AudioSettingsMenu.cs" id="4_ciy5h"]
+[ext_resource type="PackedScene" uid="uid://ds4lxytym5b1v" path="res://Components/Settings/BattleSettingsMenu.tscn" id="2_riyki"]
+[ext_resource type="PackedScene" uid="uid://yek833t05a78" path="res://Components/Settings/VideoSettingsMenu.tscn" id="3_hkg6u"]
+[ext_resource type="PackedScene" uid="uid://evf3xp06lhea" path="res://Components/Settings/AudioSettingsMenu.tscn" id="4_qetdc"]
+[ext_resource type="PackedScene" uid="uid://b06chrsydglke" path="res://Components/Settings/DeveloperOptionsMenu.tscn" id="5_60yhi"]
 
 [node name="SettingsMenu" type="TabContainer"]
 anchors_preset = 15
@@ -14,118 +14,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_av57b")
 
-[node name="BattleSettingsMenu" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 2
-script = ExtResource("2_xtjo5")
-
-[node name="GridContainer" type="GridContainer" parent="BattleSettingsMenu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-columns = 2
-
-[node name="Label" type="Label" parent="BattleSettingsMenu/GridContainer"]
-layout_mode = 2
-text = "跳过非玩家回合"
-
-[node name="SkipNonPlayerTurnCheckButton" type="CheckButton" parent="BattleSettingsMenu/GridContainer"]
+[node name="BattleSettingsMenu" parent="." instance=ExtResource("2_riyki")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="VideoSettingsMenu" type="Control" parent="."]
+[node name="VideoSettingsMenu" parent="." instance=ExtResource("3_hkg6u")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-script = ExtResource("3_68iki")
 
-[node name="GridContainer" type="GridContainer" parent="VideoSettingsMenu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-columns = 2
-
-[node name="Label" type="Label" parent="VideoSettingsMenu/GridContainer"]
-layout_mode = 2
-text = "全屏"
-
-[node name="FullScreenCheckButton" type="CheckButton" parent="VideoSettingsMenu/GridContainer"]
+[node name="AudioSettingsMenu" parent="." instance=ExtResource("4_qetdc")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="AudioSettingsMenu" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-script = ExtResource("4_ciy5h")
-
-[node name="GridContainer" type="GridContainer" parent="AudioSettingsMenu"]
-layout_mode = 2
-columns = 2
-
-[node name="Label3" type="Label" parent="AudioSettingsMenu/GridContainer"]
-layout_mode = 2
-text = "主音量"
-
-[node name="MasterVolumeSlider" type="HSlider" parent="AudioSettingsMenu/GridContainer"]
+[node name="DeveloperOptionsMenu" parent="." instance=ExtResource("5_60yhi")]
 unique_name_in_owner = true
 layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.8
-
-[node name="Label" type="Label" parent="AudioSettingsMenu/GridContainer"]
-layout_mode = 2
-text = "音乐音量"
-
-[node name="MusicVolumeSlider" type="HSlider" parent="AudioSettingsMenu/GridContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.8
-
-[node name="Label2" type="Label" parent="AudioSettingsMenu/GridContainer"]
-layout_mode = 2
-text = "音效音量"
-
-[node name="SoundEffectVolumeSlider" type="HSlider" parent="AudioSettingsMenu/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.8
-
-[node name="MuteAllButton" type="Button" parent="AudioSettingsMenu/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "全部静音"
-
-[node name="AudioResetButton" type="Button" parent="AudioSettingsMenu/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "重置音量设置"
-
-[node name="DeveloperOptionsMenu" type="Control" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-script = ExtResource("2_dgytf")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="DeveloperOptionsMenu"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -68.0
-offset_right = 68.0
-offset_bottom = 31.0
-grow_horizontal = 2
-size_flags_horizontal = 4
-
-[node name="OpenUserDataDirButton" type="Button" parent="DeveloperOptionsMenu/VBoxContainer"]
-layout_mode = 2
-text = "打开用户数据目录"
-
-[connection signal="pressed" from="DeveloperOptionsMenu/VBoxContainer/OpenUserDataDirButton" to="DeveloperOptionsMenu" method="On_OpenUserDataDirButton_Pressed"]

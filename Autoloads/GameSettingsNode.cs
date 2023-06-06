@@ -28,6 +28,9 @@ namespace CMSGame
 
         public GameSettingsNode()
         {
+            Guard.IsNull(Current); // 单例
+            Current = this;
+
             RegisterAllSettings();
             MakeDirectories();
             LoadAllSettings();
@@ -35,8 +38,6 @@ namespace CMSGame
 
         public override void _EnterTree()
         {
-            Guard.IsNull(Current); // 单例
-            Current = this;
             ApplyVideoSettings();
         }
 

@@ -2,30 +2,13 @@ using CMSGame.Helpers;
 
 namespace CMSGame
 {
+    [SceneTree]
     internal partial class AudioSettingsMenu : Control
     {
-        public AudioSettings? Settings;
-
-        public HSlider? MasterVolumeSlider;
-
-        public HSlider? MusicVolumeSlider;
-
-        public HSlider? SoundEffectVolumeSlider;
-
-        public Button? AudioResetButton;
-
-        public Button? MuteAllButton;
+        public AudioSettings Settings = GameSettingsNode.Current!.AudioSettings;
 
         public override void _Ready()
         {
-            // 获取节点
-            Settings = GameSettingsNode.Current!.AudioSettings;
-            this.GetUniqueNode(ref MasterVolumeSlider, nameof(MasterVolumeSlider));
-            this.GetUniqueNode(ref MusicVolumeSlider, nameof(MusicVolumeSlider));
-            this.GetUniqueNode(ref SoundEffectVolumeSlider, nameof(SoundEffectVolumeSlider));
-            this.GetUniqueNode(ref AudioResetButton, nameof(AudioResetButton));
-            this.GetUniqueNode(ref MuteAllButton, nameof(MuteAllButton));
-
             // 连接信号
             MasterVolumeSlider!.ValueChanged += MasterVolumeSlider_ValueChanged;
             MusicVolumeSlider!.ValueChanged += MusicVolumeSlider_ValueChanged;

@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://evf3xp06lhea"]
+
+[ext_resource type="Script" path="res://Components/Settings/AudioSettingsMenu.cs" id="1_hh2gg"]
+
+[node name="AudioSettingsMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hh2gg")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2
+
+[node name="Label3" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "主音量"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "音乐音量"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="Label2" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "音效音量"
+
+[node name="SoundEffectVolumeSlider" type="HSlider" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="MuteAllButton" type="Button" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "全部静音"
+
+[node name="AudioResetButton" type="Button" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "重置音量设置"

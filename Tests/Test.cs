@@ -7,7 +7,7 @@ namespace CMSGame.Tests
         [Fact]
         public void Test()
         {
-            Console.WriteLine("Are you going to test me out?");
+            // To be added.
         }
     }
 }

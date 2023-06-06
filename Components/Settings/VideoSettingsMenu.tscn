@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://yek833t05a78"]
+
+[ext_resource type="Script" path="res://Components/Settings/VideoSettingsMenu.cs" id="1_tkw46"]
+
+[node name="VideoSettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tkw46")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+text = "全屏"
+
+[node name="FullScreenCheckButton" type="CheckButton" parent="GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2

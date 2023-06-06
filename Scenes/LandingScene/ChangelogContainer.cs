@@ -12,8 +12,10 @@ namespace CMSGame
 
         public override void _Ready()
         {
+            // 获取节点
             this.GetUniqueNode(ref ChangelogLabel, nameof(ChangelogLabel));
 
+            // 更新控件
             SetLabelText();
         }
 

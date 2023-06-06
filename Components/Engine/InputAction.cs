@@ -7,7 +7,7 @@ namespace CMSGame
 
         public static InputEventMouse? LastMiddleMouseDragEvent = null;
 
-        public static readonly Dictionary<string, Vector2I> MoveDirections = new(){
+        public static readonly Dictionary<StringName, Vector2I> MoveDirections = new(){
             {MoveUp, Vector2I.Up },
             {MoveDown, Vector2I.Down },
             {MoveLeft, Vector2I.Left },
