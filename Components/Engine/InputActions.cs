@@ -1,7 +1,7 @@
 namespace CMSGame
 {
     [InputMap]
-    internal static partial class InputAction
+    internal static partial class InputActions
     {
         public static bool IsMiddleMouseDragging => LastMiddleMouseDragEvent != null;
 
