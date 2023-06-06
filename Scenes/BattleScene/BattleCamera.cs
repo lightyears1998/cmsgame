@@ -1,5 +1,4 @@
-using System.Diagnostics;
-using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 namespace CMSGame
 {
@@ -70,6 +69,8 @@ namespace CMSGame
             Camera2D.LimitTop = (int)SafeCameraArea.Position.Y;
             Camera2D.LimitRight = (int)SafeCameraArea.End.X;
             Camera2D.LimitBottom = (int)SafeCameraArea.End.Y;
+            Camera2D.DragHorizontalEnabled = Camera2D.DragVerticalEnabled = DragEnabled;
+
             FocusOn(FocusPosition);
             Camera2D.ResetSmoothing();
         }

@@ -25,6 +25,7 @@ namespace CMSGame
                 End = used.End * TileSize
             };
             BattleCamera.SafeCameraArea = cameraArea;
+            BattleCamera.DragEnabled = false;
         }
 
         public override void _Input(InputEvent @event)
@@ -41,8 +42,6 @@ namespace CMSGame
 
         public void HandleMouseInput(InputEventMouse mouseEvent)
         {
-            bool isValidInput = false;
-
             // 左键单击
             if ((mouseEvent.ButtonMask & MouseButtonMask.Left) != 0)
             {
@@ -50,7 +49,6 @@ namespace CMSGame
                 var localPositionToTileMap = globalPosition - BattleTileMap.Position;
                 var gridPosition = BattleTileMap.LocalToMap(localPositionToTileMap);
                 TryMoveSelectionMarkerTo(gridPosition);
-                isValidInput = true;
             }
 
             // 中键拖拽
@@ -63,7 +61,6 @@ namespace CMSGame
                     BattleCamera.FocusOn(newPosition);
                 }
                 InputActions.LastMiddleMouseDragEvent = mouseEvent;
-                isValidInput = true;
             }
             else
             {
@@ -72,17 +69,10 @@ namespace CMSGame
                     InputActions.LastMiddleMouseDragEvent = null;
                 }
             }
-
-            if (isValidInput)
-            {
-                BattleCamera.DragEnabled = false;
-            }
         }
 
         public void HandleKeyboardInput(InputEventKey keyEvent)
         {
-            bool isValidInput = false;
-
             // 暂停菜单
             if (keyEvent.IsAction(InputActions.BattlePause))
             {
@@ -98,13 +88,7 @@ namespace CMSGame
                 {
                     TryMoveSelectionMarkerTo(SelectionMarker.GridPosition + direction);
                     BattleCamera.FocusOn(SelectionMarker.Position);
-                    isValidInput = true;
                 }
-            }
-
-            if (isValidInput)
-            {
-                BattleCamera.DragEnabled = true;
             }
         }
 
