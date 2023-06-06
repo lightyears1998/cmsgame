@@ -9,6 +9,10 @@ namespace CMSGame
         public override void _Ready()
         {
             // 连接信号
+            StartButton.Pressed += StartButton_Pressed;
+            SettingsButton.Pressed += SettingsButton_Pressed;
+            QuitButton.Pressed += QuitButton_Pressed;
+            ChangelogToggleButton.Pressed += ChangelogToggleButton_Pressed;
             ChangelogContainer.VisibilityChanged += UpdateButtonText;
 
             // 更新控件
@@ -36,22 +40,22 @@ namespace CMSGame
             ChangelogContainer.Visible = showShowChangeLog;
         }
 
-        public static void On_StartButton_Pressed()
+        private void StartButton_Pressed()
         {
-            SceneLoader.Current!.ChangeSceneToFile("res://Scenes/BattleScene/BattleScene.tscn");
+            SceneLoader.Current!.ChangeSceneToFile(Scenes.BattleScene);
         }
 
-        public void On_SettingsPopupButton_Pressed()
+        private void SettingsButton_Pressed()
         {
             SettingsMenuPopup.PopupCentered();
         }
 
-        public void On_QuitButton_Pressed()
+        private void QuitButton_Pressed()
         {
             GetTree().Quit();
         }
 
-        public void On_ChangelogToggleButton_Pressed()
+        private void ChangelogToggleButton_Pressed()
         {
             ChangelogContainer.Visible = !ChangelogContainer.Visible;
             GameSettingsNode.Current!.MiscSettings.ShowChangelogAtLandingScene = ChangelogContainer.Visible;

@@ -115,8 +115,3 @@ text = "展
 新
 日
 志"
-
-[connection signal="pressed" from="StartMenu/StartButton" to="." method="On_StartButton_Pressed"]
-[connection signal="pressed" from="StartMenu/SettingsButton" to="." method="On_SettingsPopupButton_Pressed"]
-[connection signal="pressed" from="StartMenu/QuitButton" to="." method="On_QuitButton_Pressed"]
-[connection signal="pressed" from="ChangelogToggleButton" to="." method="On_ChangelogToggleButton_Pressed"]
