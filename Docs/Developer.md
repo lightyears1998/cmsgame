@@ -2,6 +2,8 @@
 
 ## itch.io
 
+### 推送到 itch.io 的 butler 指令
+
 Game Release
 
 ``` cmd
@@ -11,5 +13,5 @@ butler push --ignore .gdignore --ignore CodeCoverage --ignore "*.TestPlatform.*"
 Assets
 
 ``` cmd
-butler push --ignore .gdignore --ignore "*.import" --dry-run "Assets" lightyears1998/cmsgame:assets
+butler push --ignore .gdignore --ignore "*.import" --ignore "*~" --dry-run "Assets" lightyears1998/cmsgame:assets
 ```
