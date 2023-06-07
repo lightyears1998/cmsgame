@@ -6,7 +6,13 @@
 
 ## 开发环境
 
-Godot 4.0 with Mono (.NET 7.0)
+Godot 4 with Mono (.NET 7.0)
+
+### 设置开发环境
+
+1. 安装 Godot 4 with Mono 和 .NET SDK 7.0。
+2. 克隆仓库代码。
+3. 由于游戏的图像和声音等二进制资源体积较大，源码仓库中未收录这些资源；若需要这些资源，可以在 [itch.io 上的游戏页面](https://lightyears1998.itch.io/cmsgame) 下载 cmsgame-assets.zip，并将解压后的文件复制到源码树中的 Assets 目录即可。
 
 ## 许可
 
