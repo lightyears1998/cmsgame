@@ -20,3 +20,7 @@ Temp
 
 # Graphics
 *.png
+*.png~
+*.kra
+*.kra~
+*.pur
