@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace CMSGame
 {
     [Tool]
@@ -5,7 +7,7 @@ namespace CMSGame
     internal partial class BattleCamera : Camera2D
     {
         [Export]
-        public bool Debug { set; get; } = false;
+        public bool DebugEnabled { set; get; } = false;
 
         [Export]
         public Rect2I Limit
@@ -20,80 +22,79 @@ namespace CMSGame
             get => new(LimitLeft, LimitTop, LimitRight - LimitLeft, LimitBottom - LimitTop);
         }
 
-        private bool _dragEnabled = false;
-
-        [Export]
-        public bool DragEnabled
-        {
-            get => _dragEnabled;
-            set
-            {
-                _dragEnabled = this.DragHorizontalEnabled = this.DragVerticalEnabled = value;
-            }
-        }
-
-        public Rect2 NoDragPositionSafeArea
-        {
-            get
-            {
-                var windowSize = DisplayServer.WindowGetSize();
-                var width = windowSize.X;
-                var height = windowSize.Y;
-                return Limit.GrowIndividual(-width / 2, -height / 2, -width / 2, -height / 2);
-            }
-        }
-
-        public override void _Ready()
-        {
-            DragEnabled = false;
-        }
-
         public override void _Draw()
         {
-            if (Debug)
+            if (DebugEnabled)
             {
                 DrawSetTransform(-GlobalPosition);
 
-                var viewportTransform = GetViewportTransform();
-                var topLeftCoordinate = new Vector2(-viewportTransform.Origin.X, -viewportTransform.Origin.Y);
-                DrawCircle(topLeftCoordinate, 64, Colors.Green);
-                DrawCircle(Position, 32, Colors.Red);
-                DrawRect(NoDragPositionSafeArea, Colors.PowderBlue);
-
-                Console.WriteLine("Camera Position: {0}", Position);
-                Console.WriteLine("Camera GlobalPosition: {0}", GlobalPosition);
+                var topLeftPosition = GetScreenTopLeftOPosition();
+                DrawCircle(topLeftPosition, 64, Colors.WhiteSmoke); // 屏幕左上角位置
+                DrawCircle(Position, 32, Colors.Red); // 相机中心位置
             }
-        }
-
-        public void PositionOn(Vector2 position)
-        {
-            //Position = ClampPosition(position);
-            Position = position;
         }
 
         public override void _Process(double delta)
         {
-            if (Debug)
+            if (DebugEnabled)
                 QueueRedraw();
         }
 
-        protected Vector2 ClampPosition(Vector2 position)
+        public override void _Input(InputEvent @event)
         {
-            var span = NoDragPositionSafeArea.End - NoDragPositionSafeArea.Position;
-            if (span.X < 0 || span.Y < 0)
+            if (DebugEnabled)
             {
-                return position; // SafeCameraFocusArea 不是合法的矩形，返回默认值。
+                if (@event.IsActionPressed(InputActions.Debug))
+                {
+                    Debug.WriteLine("Screen top-left position: {0}", GetScreenTopLeftOPosition());
+                }
+            }
+        }
+
+        public Vector2 GetScreenTopLeftOPosition()
+        {
+            var transformOrigin = GetCanvasTransform().Origin;
+            return new Vector2(-transformOrigin.X, -transformOrigin.Y);
+        }
+
+        public void PositionOn(Vector2 position)
+        {
+            using (new NoDrag(this))
+            {
+                Position = position;
+            }
+        }
+
+        public void Pan(Vector2 distance)
+        {
+            using (new NoDrag(this))
+            {
+                Position += distance;
+            }
+        }
+
+        public sealed class NoDrag : IDisposable
+        {
+            private readonly Camera2D _camera;
+            private readonly bool _previousDragHorizontalEnabled;
+            private readonly bool _previousDragVerticalEnabled;
+
+            public NoDrag(Camera2D camera)
+            {
+                _camera = camera;
+
+                _previousDragHorizontalEnabled = _camera.DragHorizontalEnabled;
+                _previousDragVerticalEnabled = _camera.DragVerticalEnabled;
+                _camera.Position = _camera.GetScreenCenterPosition();
+                _camera.DragHorizontalEnabled = false;
+                _camera.DragVerticalEnabled = false;
             }
 
-            if (!NoDragPositionSafeArea.HasPoint(position))
+            public void Dispose()
             {
-                // 将相机中心位置钳制在 NoDragPositionSafeArea 内。
-                var x = Mathf.Clamp(position.X, NoDragPositionSafeArea.Position.X, NoDragPositionSafeArea.End.X);
-                var y = Mathf.Clamp(position.Y, NoDragPositionSafeArea.Position.Y, NoDragPositionSafeArea.End.Y);
-                position = new Vector2(x, y);
+                _camera.DragHorizontalEnabled = _previousDragHorizontalEnabled;
+                _camera.DragVerticalEnabled = _previousDragVerticalEnabled;
             }
-
-            return position;
         }
     }
 }

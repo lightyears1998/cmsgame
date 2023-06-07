@@ -25,7 +25,6 @@ namespace CMSGame
                 End = used.End * TileSize
             };
             BattleCamera.Limit = cameraArea;
-            BattleCamera.DragEnabled = true;
         }
 
         public override void _Input(InputEvent @event)
@@ -57,8 +56,7 @@ namespace CMSGame
                 if (InputActions.IsMiddleMouseDragging)
                 {
                     var dragDistance = mouseEvent.Position - InputActions.LastMiddleMouseDragEvent!.Position;
-                    var newPosition = BattleCamera.Position - dragDistance;
-                    BattleCamera.PositionOn(newPosition);
+                    BattleCamera.Pan(-dragDistance);
                 }
                 InputActions.LastMiddleMouseDragEvent = mouseEvent;
             }
