@@ -85,7 +85,7 @@ namespace CMSGame
                 if (keyEvent.IsAction(action) && keyEvent.Pressed)
                 {
                     TryMoveSelectionMarkerTo(SelectionMarker.GridPosition + direction);
-                    BattleCamera.PositionOn(SelectionMarker.Position);
+                    BattleCamera.ShootOn(SelectionMarker.Position);
                 }
             }
         }

@@ -61,8 +61,13 @@ namespace CMSGame
         {
             using (new NoDrag(this))
             {
-                Position = position;
+                ShootOn(position);
             }
+        }
+
+        public void ShootOn(Vector2 position)
+        {
+            Position = position;
         }
 
         public void Pan(Vector2 distance)
@@ -92,6 +97,7 @@ namespace CMSGame
 
             public void Dispose()
             {
+                _camera.ForceUpdateScroll();
                 _camera.DragHorizontalEnabled = _previousDragHorizontalEnabled;
                 _camera.DragVerticalEnabled = _previousDragVerticalEnabled;
             }

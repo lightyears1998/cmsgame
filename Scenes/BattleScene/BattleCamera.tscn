@@ -4,10 +4,12 @@
 
 [node name="BattleCamera" type="Camera2D"]
 position_smoothing_speed = 8.0
-drag_left_margin = 0.6
-drag_top_margin = 0.6
-drag_right_margin = 0.6
-drag_bottom_margin = 0.6
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.75
+drag_top_margin = 0.75
+drag_right_margin = 0.75
+drag_bottom_margin = 0.75
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("1_j6lui")
