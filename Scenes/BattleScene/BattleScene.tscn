@@ -290,16 +290,19 @@ text = "防御方"
 [node name="BattleUnitSprite2" parent="Units" instance=ExtResource("7_sw714")]
 material = SubResource("ShaderMaterial_soik2")
 position = Vector2(32, 224)
+UnitName = "安瑟"
 GridPosition = Vector2i(0, 3)
 
 [node name="BattleUnitSprite3" parent="Units" instance=ExtResource("7_sw714")]
 material = SubResource("ShaderMaterial_lnmse")
 position = Vector2(32, 352)
 Side = 1
+UnitName = "强盗"
 GridPosition = Vector2i(0, 5)
 
 [node name="BattleUnitSprite" parent="Units" instance=ExtResource("7_sw714")]
 material = SubResource("ShaderMaterial_acvkf")
 position = Vector2(160, 416)
 Side = 1
+UnitName = "土匪"
 GridPosition = Vector2i(2, 6)

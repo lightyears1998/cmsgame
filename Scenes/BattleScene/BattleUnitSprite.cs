@@ -1,13 +1,17 @@
 namespace CMSGame
 {
     [Tool]
-    internal partial class BattleUnitSprite : GridSprite2D
+    internal partial class BattleUnitSprite : GridSprite2D, IBattleUnit
     {
         public enum UnitSide
         {
             Player,
             Enemy
         }
+
+        public static readonly Color PlayerColor = new("6894ff");
+
+        public static readonly Color EnemyColor = new("ff5468");
 
         private UnitSide _side;
 
@@ -35,8 +39,88 @@ namespace CMSGame
             }
         }
 
-        public static readonly Color PlayerColor = new Color("6894ff");
+        [Export]
+        public string UnitName
+        {
+            set; get;
+        } = "";
 
-        public static readonly Color EnemyColor = new Color("ff5468");
+        [Export]
+        public int MoveAbility
+        {
+            set; get;
+        }
+
+        [Export]
+        public int Attack
+        {
+            set; get;
+        }
+
+        [Export]
+        public int HitRate
+        {
+            set; get;
+        }
+
+        [Export]
+        public int DodgeRate
+        {
+            set; get;
+        }
+
+        [Export]
+        public int CriticalHitRate
+        {
+            set; get;
+        }
+
+        [Export]
+        public int DodgeCriticalRate
+        {
+            set; get;
+        }
+
+        [Export]
+        public int Strength
+        {
+            set; get;
+        }
+
+        [Export]
+        public int MagicPower
+        {
+            set; get;
+        }
+
+        [Export]
+        public int Skill
+        {
+            set; get;
+        }
+
+        [Export]
+        public int Speed
+        {
+            set; get;
+        }
+
+        [Export]
+        public int Defense
+        {
+            set; get;
+        }
+
+        [Export]
+        public int MagicDefense
+        {
+            set; get;
+        }
+
+        [Export]
+        public int Luck
+        {
+            set; get;
+        }
     }
 }
