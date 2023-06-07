@@ -72,7 +72,7 @@ namespace CMSGame
         public void HandleKeyboardInput(InputEventKey keyEvent)
         {
             // 暂停菜单
-            if (keyEvent.IsAction(InputActions.BattlePause))
+            if (keyEvent.IsActionPressed(InputActions.BattlePause))
             {
                 PauseMenu.Visible = !PauseMenu.Visible;
             }
@@ -82,7 +82,7 @@ namespace CMSGame
             {
                 var action = kv.Key;
                 var direction = kv.Value;
-                if (keyEvent.IsAction(action) && keyEvent.Pressed)
+                if (keyEvent.IsAction(action) && keyEvent.Pressed == true)
                 {
                     TryMoveSelectionMarkerTo(SelectionMarker.GridPosition + direction);
                     BattleCamera.ShootOn(SelectionMarker.Position);
