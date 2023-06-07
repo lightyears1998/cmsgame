@@ -13,10 +13,11 @@ namespace CMSGame
 
         public override void _Ready()
         {
-            SetCamera();
+            SetupCamera();
+            SetupSelectionBox();
         }
 
-        private void SetCamera()
+        private void SetupCamera()
         {
             var used = BattleTileMap.GetUsedRect().Grow(-1);
             Rect2I cameraArea = new()
@@ -25,6 +26,14 @@ namespace CMSGame
                 End = used.End * TileSize
             };
             BattleCamera.Limit = cameraArea;
+        }
+
+        private void SetupSelectionBox()
+        {
+            SelectionMarker.SelectionChanged += (gridPosition) =>
+            {
+                SelectionHintBox.ShowText(BattleTileMap.GetBattleTileData(gridPosition));
+            };
         }
 
         public override void _Input(InputEvent @event)
@@ -41,8 +50,8 @@ namespace CMSGame
 
         public void HandleMouseInput(InputEventMouse mouseEvent)
         {
-            // 左键单击
-            if ((mouseEvent.ButtonMask & MouseButtonMask.Left) != 0)
+            // 选择
+            if (mouseEvent.IsActionPressed(InputActions.Select))
             {
                 var globalPosition = BattleCamera.GetScreenCenterPosition() - GetViewport().GetWindow().Size / 2 + mouseEvent.GlobalPosition;
                 var localPositionToTileMap = globalPosition - BattleTileMap.Position;
@@ -50,7 +59,12 @@ namespace CMSGame
                 TryMoveSelectionMarkerTo(gridPosition);
             }
 
-            // 中键拖拽
+            // 取消选择
+            if (mouseEvent.IsActionPressed(InputActions.Deselect))
+            {
+            }
+
+            // 鼠标镜头拖动
             if ((mouseEvent.ButtonMask & MouseButtonMask.Middle) != 0)
             {
                 if (InputActions.IsMiddleMouseDragging)
