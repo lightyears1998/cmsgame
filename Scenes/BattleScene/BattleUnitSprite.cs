@@ -45,6 +45,19 @@ namespace CMSGame
             set; get;
         } = "";
 
+        private int _actionPoints = 1;
+
+        [Export]
+        public int ActionPoints
+        {
+            get => _actionPoints;
+            set
+            {
+                _actionPoints = value;
+                ((ShaderMaterial)this.Material).SetShaderParameter("grayscale", _actionPoints <= 0);
+            }
+        }
+
         [Export]
         public int MoveAbility
         {
