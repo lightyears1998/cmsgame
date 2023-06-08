@@ -17,11 +17,9 @@ alignment = 1
 custom_minimum_size = Vector2(800, 450)
 layout_mode = 2
 
-[node name="HidePopupButton" type="Button" parent="VBoxContainer"]
+[node name="HideButton" type="Button" parent="VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "关闭"
-
-[connection signal="pressed" from="VBoxContainer/HidePopupButton" to="." method="On_HidePopupButton_Pressed"]

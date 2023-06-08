@@ -11,10 +11,27 @@ namespace CMSGame
 
         public const int TileSize = 64;
 
+        private readonly Dictionary<Vector2I, BattleUnitSprite> _position2unit = new();
+
+        private readonly HashSet<BattleUnitSprite> _sprites = new();
+
         public override void _Ready()
         {
+            SetupSprites();
             SetupCamera();
             SetupSelectionBox();
+        }
+
+        private void SetupSprites()
+        {
+            foreach (var child in Units.GetChildren())
+            {
+                if (child is BattleUnitSprite sprite)
+                {
+                    _sprites.Add(sprite);
+                    _position2unit[sprite.GridPosition] = sprite;
+                }
+            }
         }
 
         private void SetupCamera()
