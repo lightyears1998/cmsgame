@@ -84,7 +84,7 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_soik2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pprn"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -92,7 +92,7 @@ shader_parameter/unit_color = Color(0.407843, 0.580392, 1, 1)
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnmse"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hnwx"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -100,7 +100,7 @@ shader_parameter/unit_color = Color(1, 0.329412, 0.407843, 1)
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_acvkf"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnkdy"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -288,20 +288,20 @@ text = "防御方"
 [node name="Units" type="Node2D" parent="."]
 
 [node name="BattleUnitSprite2" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_soik2")
+material = SubResource("ShaderMaterial_8pprn")
 position = Vector2(32, 224)
 UnitName = "安瑟"
 GridPosition = Vector2i(0, 3)
 
 [node name="BattleUnitSprite3" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_lnmse")
+material = SubResource("ShaderMaterial_2hnwx")
 position = Vector2(32, 352)
 Side = 1
 UnitName = "强盗"
 GridPosition = Vector2i(0, 5)
 
 [node name="BattleUnitSprite" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_acvkf")
+material = SubResource("ShaderMaterial_cnkdy")
 position = Vector2(160, 416)
 Side = 1
 UnitName = "土匪"
