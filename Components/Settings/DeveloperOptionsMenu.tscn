@@ -23,5 +23,3 @@ size_flags_horizontal = 4
 unique_name_in_owner = true
 layout_mode = 2
 text = "打开用户数据目录"
-
-[connection signal="pressed" from="VBoxContainer/OpenUserDataDirButton" to="." method="On_OpenUserDataDirButton_Pressed"]
