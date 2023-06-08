@@ -2,25 +2,12 @@
 .godot/
 
 # IDE
+.mono
 .vscode
 .vs
 Properties/launchSettings.json
 
-# Temporary files
+# Temporary/Old files
 Temp
-.mono
 *.old
-
-# Fonts
-*.ttf
-*.otf
-
-# Audio
-*.ogg
-
-# Graphics
-*.png
-*.png~
-*.kra
-*.kra~
-*.pur
+*.*~
