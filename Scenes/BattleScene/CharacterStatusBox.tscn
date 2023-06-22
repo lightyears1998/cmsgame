@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://oen3vohunj44"]
+
+[ext_resource type="Script" path="res://Scenes/BattleScene/CharacterStatusBox.cs" id="1_krl53"]
+
+[node name="CharacterStatusBox" type="PanelContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_krl53")
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="UnitNameLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "角色姓名"
+
+[node name="EquipmentLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "当前装备"
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+columns = 6
+
+[node name="Label" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "物攻"
+
+[node name="AttackLabel" type="Label" parent="HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label3" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "命中"
+
+[node name="HitLabel" type="Label" parent="HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label5" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "必杀"
+
+[node name="CriticalHitLabel" type="Label" parent="HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label7" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "速度"
+
+[node name="SpeedLabel" type="Label" parent="HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label2" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "回避"
+
+[node name="DodgeLabel" type="Label" parent="HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
+
+[node name="Label11" type="Label" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+text = "必避"
+
+[node name="DodgeCriticalLabel" type="Label" parent="HBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "--"
