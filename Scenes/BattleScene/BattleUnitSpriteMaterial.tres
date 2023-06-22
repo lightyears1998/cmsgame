@@ -1,0 +1,42 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bkh0jrwyn83cj"]
+
+[sub_resource type="Shader" id="Shader_o0f4w"]
+code = "shader_type canvas_item;
+
+global uniform float EPSILON;
+
+uniform float health_ratio;
+uniform vec4 unit_color : source_color;
+uniform bool grayscale;
+uniform vec4 template_frame_color : source_color = vec4(0.25, 0.25, 0.25, 1);
+uniform vec4 template_inner_color : source_color = vec4(0.5, 0.5, 0.5, 1) ;
+
+const vec4 EMPTY_COLOR = vec4(1, 1, 1, 0);
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV);
+	
+	if (length(COLOR - template_inner_color) <= EPSILON) {
+		if ((UV.y-0.125) / (1. - 0.125) > 1. - health_ratio) {
+			COLOR = unit_color;
+		} else {
+			COLOR = EMPTY_COLOR;
+		}
+	} else if (length(COLOR - template_frame_color) <= EPSILON) {
+		COLOR = unit_color;
+		COLOR.rgb = COLOR.rgb / 1.5;
+	}
+	
+	if (grayscale) {
+		COLOR.rgb = vec3(dot(COLOR.rgb, vec3(0.299, 0.587, 0.114)));
+	}
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_o0f4w")
+shader_parameter/health_ratio = 1.0
+shader_parameter/unit_color = Color(0.407843, 0.580392, 1, 1)
+shader_parameter/grayscale = false
+shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
+shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
