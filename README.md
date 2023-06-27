@@ -2,7 +2,7 @@
 
 [![Powered by Godot 4 Mono](https://img.shields.io/badge/Powered%20by-Godot%204%20Mono-blue)](https://godotengine.org/)
 
-使用 Godot 4 with Mono 制作的一款（正在制作中的）战棋 RPG。
+使用 Godot 4 with Mono 正在制作中的……游戏？>_<
 
 - [游戏设计与故事背景](Docs/Story.md)
 
