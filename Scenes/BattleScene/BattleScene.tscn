@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cp6aa655vykt1"]
+[gd_scene load_steps=19 format=3 uid="uid://cp6aa655vykt1"]
 
 [ext_resource type="Script" path="res://Scenes/BattleScene/BattleScene.cs" id="1_n6bn7"]
 [ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/TileMaps/map.png" id="2_igtsq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dfda0qwu8bnlf" path="res://Scenes/BattleScene/PauseMenu.tscn" id="5_7nefo"]
 [ext_resource type="PackedScene" uid="uid://b0sij10e754b3" path="res://Scenes/BattleScene/SelectionHintBox.tscn" id="6_1qory"]
 [ext_resource type="Script" path="res://Scenes/BattleScene/PauseMenu.cs" id="6_8r7ng"]
+[ext_resource type="PackedScene" uid="uid://oen3vohunj44" path="res://Scenes/BattleScene/CharacterStatusBox.tscn" id="7_cfao4"]
 [ext_resource type="PackedScene" uid="uid://bvvmna0m12gie" path="res://Scenes/BattleScene/BattleUnitSprite.tscn" id="7_sw714"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vlk32"]
@@ -64,6 +65,7 @@ global uniform float EPSILON;
 
 uniform float health_ratio;
 uniform vec4 unit_color : source_color;
+uniform bool grayscale;
 uniform vec4 template_frame_color : source_color = vec4(0.25, 0.25, 0.25, 1);
 uniform vec4 template_inner_color : source_color = vec4(0.5, 0.5, 0.5, 1) ;
 
@@ -82,29 +84,36 @@ void fragment() {
 		COLOR = unit_color;
 		COLOR.rgb = COLOR.rgb / 1.5;
 	}
+	
+	if (grayscale) {
+		COLOR.rgb = vec3(dot(COLOR.rgb, vec3(0.299, 0.587, 0.114)));
+	}
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8pprn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_empko"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
 shader_parameter/unit_color = Color(0.407843, 0.580392, 1, 1)
+shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2hnwx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_53u3i"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
 shader_parameter/unit_color = Color(1, 0.329412, 0.407843, 1)
+shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cnkdy"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jc386"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
 shader_parameter/unit_color = Color(1, 0.329412, 0.407843, 1)
+shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
@@ -144,89 +153,8 @@ script = ExtResource("3_igesh")
 [node name="SelectionHintBox" parent="HUD" instance=ExtResource("6_1qory")]
 unique_name_in_owner = true
 
-[node name="CharacterStatusBox" type="PanelContainer" parent="HUD"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -40.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-metadata/_edit_lock_ = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/CharacterStatusBox"]
-layout_mode = 2
-
-[node name="UnitNameLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer"]
+[node name="CharacterStatusBox" parent="HUD" instance=ExtResource("7_cfao4")]
 unique_name_in_owner = true
-layout_mode = 2
-text = "角色姓名"
-
-[node name="EquipmentLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "当前装备"
-
-[node name="GridContainer" type="GridContainer" parent="HUD/CharacterStatusBox/HBoxContainer"]
-layout_mode = 2
-columns = 6
-
-[node name="Label" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "物攻"
-
-[node name="AttackLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "--"
-
-[node name="Label3" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "命中"
-
-[node name="HitLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "--"
-
-[node name="Label5" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "必杀"
-
-[node name="CriticalHitLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "--"
-
-[node name="Label7" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "速度"
-
-[node name="SpeedLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "--"
-
-[node name="Label2" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "回避"
-
-[node name="DodgeLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "--"
-
-[node name="Label11" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-layout_mode = 2
-text = "必避"
-
-[node name="DodgeCriticalLabel" type="Label" parent="HUD/CharacterStatusBox/HBoxContainer/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "--"
 
 [node name="BattleUnitActionMenu" type="PanelContainer" parent="HUD"]
 unique_name_in_owner = true
@@ -286,22 +214,23 @@ layout_mode = 2
 text = "防御方"
 
 [node name="Units" type="Node2D" parent="."]
+unique_name_in_owner = true
 
 [node name="BattleUnitSprite2" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_8pprn")
+material = SubResource("ShaderMaterial_empko")
 position = Vector2(32, 224)
-UnitName = "安瑟"
+UnitName = "克洛夫"
 GridPosition = Vector2i(0, 3)
 
 [node name="BattleUnitSprite3" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_2hnwx")
+material = SubResource("ShaderMaterial_53u3i")
 position = Vector2(32, 352)
 Side = 1
 UnitName = "强盗"
 GridPosition = Vector2i(0, 5)
 
 [node name="BattleUnitSprite" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_cnkdy")
+material = SubResource("ShaderMaterial_jc386")
 position = Vector2(160, 416)
 Side = 1
 UnitName = "土匪"

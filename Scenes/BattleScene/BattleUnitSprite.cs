@@ -23,7 +23,7 @@ namespace CMSGame
             {
                 _side = value;
                 var color = Side == UnitSide.Player ? PlayerColor : EnemyColor;
-                ((ShaderMaterial)Material).SetShaderParameter("unit_color", color);
+                ((ShaderMaterial)this.Material).SetShaderParameter("unit_color", color);
             }
         }
 

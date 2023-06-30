@@ -15,6 +15,8 @@ namespace CMSGame
 
         private readonly HashSet<BattleUnitSprite> _sprites = new();
 
+        private BattleUnitSprite? _selectedSprite = null;
+
         public override void _Ready()
         {
             SetupSprites();
@@ -50,6 +52,8 @@ namespace CMSGame
             SelectionMarker.SelectionChanged += (gridPosition) =>
             {
                 SelectionHintBox.ShowText(BattleTileMap.GetBattleTileData(gridPosition));
+                _selectedSprite = _position2unit.ContainsKey(gridPosition) ? _position2unit[gridPosition] : null;
+                CharacterStatusBox.ShowInfo(_selectedSprite);
             };
         }
 
