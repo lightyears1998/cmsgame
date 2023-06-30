@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dghrkitg48yh5"]
+
+[ext_resource type="PackedScene" uid="uid://dn6gl5dhytgsa" path="res://Components/Grid/GridSprite2D.tscn" id="1_i1a84"]
+[ext_resource type="Texture2D" uid="uid://yygg0obg250l" path="res://Assets/TileMaps/map.png" id="2_rt0n7"]
+
+[node name="GridSprite2D" instance=ExtResource("1_i1a84")]
+position = Vector2(32, 32)
+texture = ExtResource("2_rt0n7")
+region_enabled = true
+region_rect = Rect2(384, 0, 64, 64)
