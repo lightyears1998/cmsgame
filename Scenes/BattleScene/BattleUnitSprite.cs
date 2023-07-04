@@ -27,6 +27,32 @@ namespace CMSGame
             }
         }
 
+        private int _health;
+
+        [Export]
+        public int Health
+        {
+            set
+            {
+                _health = value;
+                HealthRatio = (double)_health / _maxHealth;
+            }
+            get => _health;
+        }
+
+        private int _maxHealth;
+
+        [Export]
+        public int MaxHealth
+        {
+            set
+            {
+                _maxHealth = value;
+                HealthRatio = (double)_health / _maxHealth;
+            }
+            get => _maxHealth;
+        }
+
         private double _healthRation = 1;
 
         [Export(PropertyHint.Range, "0, 1")]

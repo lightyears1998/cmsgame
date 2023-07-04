@@ -19,5 +19,5 @@
 ## 可以参考的美术资源
 
 - 重点参考《火焰纹章：回声》
-- 少女前线的二创动画
+- 少女前线的二创动画 【【少前动画】 DEFY AN-94 & AK-12 vs 千尋藤崎-哔哩哔哩】 https://b23.tv/UdIpkib
 - 《The Battle for Wesnoth》

@@ -3,12 +3,6 @@ namespace CMSGame
     [SceneTree]
     internal partial class BattleScene : Node2D
     {
-        public enum Phase
-        {
-            PlayerPhase,
-            EnemyPhase
-        }
-
         public const int TileSize = 64;
 
         private readonly Dictionary<Vector2I, BattleUnitSprite> _position2unit = new();
@@ -19,9 +13,17 @@ namespace CMSGame
 
         public override void _Ready()
         {
+            // 设置控件
             SetupSprites();
             SetupCamera();
-            SetupSelectionBox();
+
+            // 连接信号
+            SelectionMarker.SelectionChanged += (gridPosition) =>
+            {
+                SelectionHintBox.ShowText(BattleTileMap.GetBattleTileData(gridPosition));
+                _selectedSprite = _position2unit.ContainsKey(gridPosition) ? _position2unit[gridPosition] : null;
+                CharacterStatusBox.ShowInfo(_selectedSprite);
+            };
         }
 
         private void SetupSprites()
@@ -45,16 +47,6 @@ namespace CMSGame
                 End = used.End * TileSize
             };
             BattleCamera.Limit = cameraArea;
-        }
-
-        private void SetupSelectionBox()
-        {
-            SelectionMarker.SelectionChanged += (gridPosition) =>
-            {
-                SelectionHintBox.ShowText(BattleTileMap.GetBattleTileData(gridPosition));
-                _selectedSprite = _position2unit.ContainsKey(gridPosition) ? _position2unit[gridPosition] : null;
-                CharacterStatusBox.ShowInfo(_selectedSprite);
-            };
         }
 
         public override void _Input(InputEvent @event)
@@ -83,6 +75,7 @@ namespace CMSGame
             // 取消选择
             if (mouseEvent.IsActionPressed(InputActions.Deselect))
             {
+                _selectedSprite = null;
             }
 
             // 鼠标镜头拖动
@@ -131,6 +124,14 @@ namespace CMSGame
             var isBoundary = tileData.GetCustomData("is_boundary").As<bool>();
             if (!isBoundary)
                 SelectionMarker.MoveTo(gridPosition);
+        }
+
+        private void DisplayMarksOfUnit(BattleUnitSprite unit)
+        {
+        }
+
+        private void GetMarksOfUnit(BattleUnitSprite unit)
+        {
         }
     }
 }
