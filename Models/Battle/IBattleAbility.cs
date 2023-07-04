@@ -25,6 +25,6 @@ namespace CMSGame
         /// <summary>
         /// 必避
         /// </summary>
-        public int DodgeCriticalRate { get; }
+        public int CriticalDodgeRate { get; }
     }
 }

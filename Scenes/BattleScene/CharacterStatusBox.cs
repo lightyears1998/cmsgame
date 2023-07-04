@@ -27,7 +27,7 @@ namespace CMSGame
             HitLabel.Text = unit.HitRate.ToString();
             DodgeLabel.Text = unit.DodgeRate.ToString();
             CriticalHitLabel.Text = unit.CriticalHitRate.ToString();
-            DodgeCriticalLabel.Text = unit.DodgeCriticalRate.ToString();
+            DodgeCriticalLabel.Text = unit.CriticalDodgeRate.ToString();
         }
     }
 }

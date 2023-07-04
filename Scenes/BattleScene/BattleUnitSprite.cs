@@ -115,7 +115,7 @@ namespace CMSGame
         }
 
         [Export]
-        public int DodgeCriticalRate
+        public int CriticalDodgeRate
         {
             set; get;
         }

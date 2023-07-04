@@ -65,12 +65,12 @@ namespace CMSGame
 
         private void VisitItchPage()
         {
-            OS.ShellOpen("https://lightyears1998.itch.io/cmsgame");
+            OS.ShellOpen(Environment.ItchHomePage);
         }
 
         private void VisitGitHubPage()
         {
-            OS.ShellOpen("https://github.com/lightyears1998/cmsgame");
+            OS.ShellOpen(Environment.GitHubHomePage);
         }
     }
 }

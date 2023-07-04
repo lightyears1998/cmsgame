@@ -92,7 +92,7 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2ru1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50wkb"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -101,7 +101,7 @@ shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4qi4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0nr3"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -110,7 +110,7 @@ shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7vj85"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxnqm"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -160,9 +160,6 @@ script = ExtResource("3_igesh")
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="SelectionHintBox" parent="HUD" instance=ExtResource("6_1qory")]
-unique_name_in_owner = true
-
-[node name="CharacterStatusBox" parent="HUD" instance=ExtResource("7_cfao4")]
 unique_name_in_owner = true
 
 [node name="BattleUnitActionMenu" type="PanelContainer" parent="HUD"]
@@ -222,11 +219,43 @@ layout_mode = 2
 layout_mode = 2
 text = "防御方"
 
+[node name="BottomBox" type="VBoxContainer" parent="HUD"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CharacterStatusBox" parent="HUD/BottomBox" instance=ExtResource("7_cfao4")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/BottomBox"]
+layout_mode = 2
+
+[node name="OperationTip" type="HBoxContainer" parent="HUD/BottomBox/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Label" type="Label" parent="HUD/BottomBox/PanelContainer/OperationTip"]
+layout_mode = 2
+text = "鼠标中键 拖动镜头"
+
+[node name="Label2" type="Label" parent="HUD/BottomBox/PanelContainer/OperationTip"]
+layout_mode = 2
+text = "鼠标左键 选择"
+
+[node name="Label3" type="Label" parent="HUD/BottomBox/PanelContainer/OperationTip"]
+layout_mode = 2
+text = "鼠标右键 取消"
+
 [node name="Units" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="BattleUnitSprite2" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_p2ru1")
+material = SubResource("ShaderMaterial_50wkb")
 position = Vector2(32, 224)
 Health = 34
 MaxHealth = 34
@@ -235,7 +264,7 @@ MoveAbility = 4
 GridPosition = Vector2i(0, 3)
 
 [node name="BattleUnitSprite3" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_f4qi4")
+material = SubResource("ShaderMaterial_e0nr3")
 position = Vector2(32, 352)
 Side = 1
 Health = 20
@@ -245,7 +274,7 @@ MoveAbility = 4
 GridPosition = Vector2i(0, 5)
 
 [node name="BattleUnitSprite" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_7vj85")
+material = SubResource("ShaderMaterial_pxnqm")
 position = Vector2(160, 416)
 Side = 1
 Health = 22
