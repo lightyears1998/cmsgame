@@ -14,6 +14,8 @@ namespace CMSGame
             QuitButton.Pressed += QuitButton_Pressed;
             ChangelogToggleButton.Pressed += ChangelogToggleButton_Pressed;
             ChangelogContainer.VisibilityChanged += UpdateButtonText;
+            VisitItchPageButton.Pressed += VisitItchPage;
+            VisitGitHubPageButton.Pressed += VisitGitHubPage;
 
             // 更新控件
             UpdateButtonText();
@@ -59,6 +61,16 @@ namespace CMSGame
         {
             ChangelogContainer.Visible = !ChangelogContainer.Visible;
             GameSettingsNode.Current!.MiscSettings.ShowChangelogAtLandingScene = ChangelogContainer.Visible;
+        }
+
+        private void VisitItchPage()
+        {
+            OS.ShellOpen("https://lightyears1998.itch.io/cmsgame");
+        }
+
+        private void VisitGitHubPage()
+        {
+            OS.ShellOpen("https://github.com/lightyears1998/cmsgame");
         }
     }
 }
