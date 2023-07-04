@@ -1,7 +1,7 @@
 namespace CMSGame
 {
     [Tool]
-    internal partial class BattleUnitSprite : GridSprite2D, IBattleUnit
+    internal partial class BattleUnitSprite : GridSprite2D
     {
         public enum UnitSide
         {

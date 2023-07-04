@@ -1,4 +1,4 @@
-# Release
+# 发布
 
 ## 游戏发布：itch.io
 
