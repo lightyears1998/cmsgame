@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c3ovsoq6o7y3t"]
 
 [ext_resource type="Script" path="res://Scenes/LandingScene/LandingScene.cs" id="1_m2rl1"]
-[ext_resource type="Theme" uid="uid://cn55cr5w4yy3n" path="res://Themes/UI.tres" id="2_js62n"]
 [ext_resource type="AudioStream" uid="uid://j05f28wrs7db" path="res://Assets/Music/Ambient/AlkaKrab - Drunken King.ogg" id="2_o3jig"]
 [ext_resource type="PackedScene" uid="uid://cslqihnfw0me2" path="res://Components/Settings/SettingsMenuPopup.tscn" id="3_6b4hi"]
+[ext_resource type="Theme" uid="uid://cn55cr5w4yy3n" path="res://Scenes/LandingScene/MainButtonTheme.tres" id="3_msgnb"]
 [ext_resource type="Script" path="res://Scenes/LandingScene/ChangelogContainer.cs" id="4_7m05h"]
 
 [node name="LandingScene" type="Control"]
@@ -37,7 +37,7 @@ offset_top = -65.5
 offset_right = 287.0
 offset_bottom = 65.5
 grow_vertical = 2
-theme = ExtResource("2_js62n")
+theme = ExtResource("3_msgnb")
 theme_override_constants/separation = 16
 
 [node name="StartButton" type="Button" parent="StartMenu"]
@@ -79,7 +79,7 @@ script = ExtResource("4_7m05h")
 
 [node name="Label" type="Label" parent="ChangelogContainer"]
 layout_mode = 2
-theme = ExtResource("2_js62n")
+theme = ExtResource("3_msgnb")
 text = "更新日志"
 horizontal_alignment = 1
 

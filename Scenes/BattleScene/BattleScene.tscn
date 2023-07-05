@@ -92,7 +92,7 @@ void fragment() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_50wkb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_isr3u"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -101,7 +101,7 @@ shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0nr3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60ofe"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -110,7 +110,7 @@ shader_parameter/grayscale = false
 shader_parameter/template_frame_color = Color(0.25, 0.25, 0.25, 1)
 shader_parameter/template_inner_color = Color(0.5, 0.5, 0.5, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pxnqm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dxvj"]
 resource_local_to_scene = true
 shader = SubResource("Shader_o0f4w")
 shader_parameter/health_ratio = 1.0
@@ -255,7 +255,7 @@ text = "鼠标右键 取消"
 unique_name_in_owner = true
 
 [node name="BattleUnitSprite2" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_50wkb")
+material = SubResource("ShaderMaterial_isr3u")
 position = Vector2(32, 224)
 Health = 34
 MaxHealth = 34
@@ -264,7 +264,7 @@ MoveAbility = 4
 GridPosition = Vector2i(0, 3)
 
 [node name="BattleUnitSprite3" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_e0nr3")
+material = SubResource("ShaderMaterial_60ofe")
 position = Vector2(32, 352)
 Side = 1
 Health = 20
@@ -274,7 +274,7 @@ MoveAbility = 4
 GridPosition = Vector2i(0, 5)
 
 [node name="BattleUnitSprite" parent="Units" instance=ExtResource("7_sw714")]
-material = SubResource("ShaderMaterial_pxnqm")
+material = SubResource("ShaderMaterial_8dxvj")
 position = Vector2(160, 416)
 Side = 1
 Health = 22
