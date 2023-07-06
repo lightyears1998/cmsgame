@@ -1,8 +1,14 @@
 namespace CMSGame
 {
+    [Tool]
     [SceneTree]
     internal partial class PhaseIndicator : PanelContainer
     {
+        public override void _Ready()
+        {
+            ShowPlayerPhase();
+        }
+
         public void ShowPlayerPhase()
         {
             Label.Text = "玩家回合";
