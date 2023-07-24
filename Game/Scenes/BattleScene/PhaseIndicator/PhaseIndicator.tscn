@@ -24,4 +24,4 @@ theme_override_constants/margin_bottom = 32
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "我方回合"
+text = "玩家回合"
